@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CAE0099187E1666004990FB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAE0097187E1650004990FB /* libxml2.2.dylib */; };
+		6CC548F1187ED151006B7C28 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 6CC548F0187ED151006B7C28 /* Style.css */; };
+		6CC548FB187ED229006B7C28 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC548F5187ED229006B7C28 /* TFHpple.m */; };
+		6CC548FC187ED229006B7C28 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC548F7187ED229006B7C28 /* TFHppleElement.m */; };
+		6CC548FD187ED229006B7C28 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC548FA187ED229006B7C28 /* XPathQuery.m */; };
+		6CC5491C187ED64E006B7C28 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB823F187C3EB500BE2617 /* Main.storyboard */; };
+		6CC54921187EE11B006B7C28 /* Zepto.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 6CC5491F187EDD06006B7C28 /* Zepto.min.js */; };
+		6CC54922187EE11B006B7C28 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 6CC5491D187EDCDD006B7C28 /* Script.js */; };
 		6CCB822C187C3EB500BE2617 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB822B187C3EB500BE2617 /* Foundation.framework */; };
 		6CCB822E187C3EB500BE2617 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB822D187C3EB500BE2617 /* CoreGraphics.framework */; };
 		6CCB8230187C3EB500BE2617 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB822F187C3EB500BE2617 /* UIKit.framework */; };
@@ -14,8 +22,7 @@
 		6CCB8238187C3EB500BE2617 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB8236187C3EB500BE2617 /* InfoPlist.strings */; };
 		6CCB823A187C3EB500BE2617 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8239187C3EB500BE2617 /* main.m */; };
 		6CCB823E187C3EB500BE2617 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB823D187C3EB500BE2617 /* AppDelegate.m */; };
-		6CCB8241187C3EB500BE2617 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB823F187C3EB500BE2617 /* Main.storyboard */; };
-		6CCB8244187C3EB500BE2617 /* tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8242187C3EB500BE2617 /* tropesios.xcdatamodeld */; };
+		6CCB8244187C3EB500BE2617 /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8242187C3EB500BE2617 /* Tropesios.xcdatamodeld */; };
 		6CCB8247187C3EB500BE2617 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8246187C3EB500BE2617 /* MasterViewController.m */; };
 		6CCB824A187C3EB500BE2617 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8249187C3EB500BE2617 /* DetailViewController.m */; };
 		6CCB824C187C3EB500BE2617 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB824B187C3EB500BE2617 /* Images.xcassets */; };
@@ -25,6 +32,7 @@
 		6CCB8256187C3EB500BE2617 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB8231187C3EB500BE2617 /* CoreData.framework */; };
 		6CCB825E187C3EB500BE2617 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB825C187C3EB500BE2617 /* InfoPlist.strings */; };
 		6CCB8260187C3EB500BE2617 /* tropesiosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB825F187C3EB500BE2617 /* tropesiosTests.m */; };
+		6CCB826F187C7F3B00BE2617 /* TvTropes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB826E187C7F3B00BE2617 /* TvTropes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,15 +46,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CAE0097187E1650004990FB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		6CC548F0187ED151006B7C28 /* Style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.css; };
+		6CC548F4187ED229006B7C28 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		6CC548F5187ED229006B7C28 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		6CC548F6187ED229006B7C28 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		6CC548F7187ED229006B7C28 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		6CC548F9187ED229006B7C28 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		6CC548FA187ED229006B7C28 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		6CC548FE187ED3A9006B7C28 /* Tropesios-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Tropesios-Info.plist"; path = "Tropesios/Tropesios-Info.plist"; sourceTree = SOURCE_ROOT; };
+		6CC5491D187EDCDD006B7C28 /* Script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		6CC5491F187EDD06006B7C28 /* Zepto.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = Zepto.min.js; path = Tropesios/Resources/Zepto.min.js; sourceTree = SOURCE_ROOT; };
 		6CCB8228187C3EB500BE2617 /* tropesios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tropesios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCB822B187C3EB500BE2617 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6CCB822D187C3EB500BE2617 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6CCB822F187C3EB500BE2617 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6CCB8231187C3EB500BE2617 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6CCB8235187C3EB500BE2617 /* tropesios-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "tropesios-Info.plist"; sourceTree = "<group>"; };
 		6CCB8237187C3EB500BE2617 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CCB8239187C3EB500BE2617 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6CCB823B187C3EB500BE2617 /* tropesios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tropesios-Prefix.pch"; sourceTree = "<group>"; };
+		6CCB823B187C3EB500BE2617 /* Tropesios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tropesios-Prefix.pch"; sourceTree = "<group>"; };
 		6CCB823C187C3EB500BE2617 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6CCB823D187C3EB500BE2617 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6CCB8240187C3EB500BE2617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,12 +73,14 @@
 		6CCB8246187C3EB500BE2617 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		6CCB8248187C3EB500BE2617 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6CCB8249187C3EB500BE2617 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		6CCB824B187C3EB500BE2617 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6CCB824B187C3EB500BE2617 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		6CCB8251187C3EB500BE2617 /* tropesiosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tropesiosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCB8252187C3EB500BE2617 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6CCB825B187C3EB500BE2617 /* tropesiosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "tropesiosTests-Info.plist"; sourceTree = "<group>"; };
 		6CCB825D187C3EB500BE2617 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CCB825F187C3EB500BE2617 /* tropesiosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tropesiosTests.m; sourceTree = "<group>"; };
+		6CCB826D187C7F3B00BE2617 /* TvTropes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvTropes.h; sourceTree = "<group>"; };
+		6CCB826E187C7F3B00BE2617 /* TvTropes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvTropes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CAE0099187E1666004990FB /* libxml2.2.dylib in Frameworks */,
 				6CCB822E187C3EB500BE2617 /* CoreGraphics.framework in Frameworks */,
 				6CCB8232187C3EB500BE2617 /* CoreData.framework in Frameworks */,
 				6CCB8230187C3EB500BE2617 /* UIKit.framework in Frameworks */,
@@ -89,11 +110,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CC548EF187ED114006B7C28 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6CCB824B187C3EB500BE2617 /* Images.xcassets */,
+				6CC5491F187EDD06006B7C28 /* Zepto.min.js */,
+				6CC548F0187ED151006B7C28 /* Style.css */,
+				6CC5491D187EDCDD006B7C28 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6CC548F2187ED229006B7C28 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CC548F3187ED229006B7C28 /* Hpple */,
+			);
+			name = Frameworks;
+			path = Tropesios/Frameworks;
+			sourceTree = SOURCE_ROOT;
+		};
+		6CC548F3187ED229006B7C28 /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				6CC548F8187ED229006B7C28 /* XPath */,
+				6CC548F4187ED229006B7C28 /* TFHpple.h */,
+				6CC548F5187ED229006B7C28 /* TFHpple.m */,
+				6CC548F6187ED229006B7C28 /* TFHppleElement.h */,
+				6CC548F7187ED229006B7C28 /* TFHppleElement.m */,
+			);
+			path = Hpple;
+			sourceTree = "<group>";
+		};
+		6CC548F8187ED229006B7C28 /* XPath */ = {
+			isa = PBXGroup;
+			children = (
+				6CC548F9187ED229006B7C28 /* XPathQuery.h */,
+				6CC548FA187ED229006B7C28 /* XPathQuery.m */,
+			);
+			path = XPath;
+			sourceTree = "<group>";
+		};
 		6CCB821F187C3EB500BE2617 = {
 			isa = PBXGroup;
 			children = (
-				6CCB8233187C3EB500BE2617 /* tropesios */,
-				6CCB8259187C3EB500BE2617 /* tropesiosTests */,
+				6CCB8233187C3EB500BE2617 /* Tropesios */,
+				6CCB8259187C3EB500BE2617 /* TropesiosTests */,
 				6CCB822A187C3EB500BE2617 /* Frameworks */,
 				6CCB8229187C3EB500BE2617 /* Products */,
 			);
@@ -111,6 +173,7 @@
 		6CCB822A187C3EB500BE2617 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CAE0097187E1650004990FB /* libxml2.2.dylib */,
 				6CCB822B187C3EB500BE2617 /* Foundation.framework */,
 				6CCB822D187C3EB500BE2617 /* CoreGraphics.framework */,
 				6CCB822F187C3EB500BE2617 /* UIKit.framework */,
@@ -120,9 +183,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6CCB8233187C3EB500BE2617 /* tropesios */ = {
+		6CCB8233187C3EB500BE2617 /* Tropesios */ = {
 			isa = PBXGroup;
 			children = (
+				6CCB8234187C3EB500BE2617 /* Supporting Files */,
+				6CC548F2187ED229006B7C28 /* Frameworks */,
+				6CC548EF187ED114006B7C28 /* Resources */,
 				6CCB823C187C3EB500BE2617 /* AppDelegate.h */,
 				6CCB823D187C3EB500BE2617 /* AppDelegate.m */,
 				6CCB823F187C3EB500BE2617 /* Main.storyboard */,
@@ -130,30 +196,32 @@
 				6CCB8246187C3EB500BE2617 /* MasterViewController.m */,
 				6CCB8248187C3EB500BE2617 /* DetailViewController.h */,
 				6CCB8249187C3EB500BE2617 /* DetailViewController.m */,
-				6CCB824B187C3EB500BE2617 /* Images.xcassets */,
-				6CCB8242187C3EB500BE2617 /* tropesios.xcdatamodeld */,
-				6CCB8234187C3EB500BE2617 /* Supporting Files */,
+				6CCB8242187C3EB500BE2617 /* Tropesios.xcdatamodeld */,
+				6CCB826D187C7F3B00BE2617 /* TvTropes.h */,
+				6CCB826E187C7F3B00BE2617 /* TvTropes.m */,
 			);
+			name = Tropesios;
 			path = tropesios;
 			sourceTree = "<group>";
 		};
 		6CCB8234187C3EB500BE2617 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6CCB8235187C3EB500BE2617 /* tropesios-Info.plist */,
+				6CC548FE187ED3A9006B7C28 /* Tropesios-Info.plist */,
 				6CCB8236187C3EB500BE2617 /* InfoPlist.strings */,
 				6CCB8239187C3EB500BE2617 /* main.m */,
-				6CCB823B187C3EB500BE2617 /* tropesios-Prefix.pch */,
+				6CCB823B187C3EB500BE2617 /* Tropesios-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6CCB8259187C3EB500BE2617 /* tropesiosTests */ = {
+		6CCB8259187C3EB500BE2617 /* TropesiosTests */ = {
 			isa = PBXGroup;
 			children = (
 				6CCB825F187C3EB500BE2617 /* tropesiosTests.m */,
 				6CCB825A187C3EB500BE2617 /* Supporting Files */,
 			);
+			name = TropesiosTests;
 			path = tropesiosTests;
 			sourceTree = "<group>";
 		};
@@ -169,9 +237,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6CCB8227187C3EB500BE2617 /* tropesios */ = {
+		6CCB8227187C3EB500BE2617 /* Tropesios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CCB8263187C3EB500BE2617 /* Build configuration list for PBXNativeTarget "tropesios" */;
+			buildConfigurationList = 6CCB8263187C3EB500BE2617 /* Build configuration list for PBXNativeTarget "Tropesios" */;
 			buildPhases = (
 				6CCB8224187C3EB500BE2617 /* Sources */,
 				6CCB8225187C3EB500BE2617 /* Frameworks */,
@@ -181,7 +249,7 @@
 			);
 			dependencies = (
 			);
-			name = tropesios;
+			name = Tropesios;
 			productName = tropesios;
 			productReference = 6CCB8228187C3EB500BE2617 /* tropesios.app */;
 			productType = "com.apple.product-type.application";
@@ -221,7 +289,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6CCB8223187C3EB500BE2617 /* Build configuration list for PBXProject "tropesios" */;
+			buildConfigurationList = 6CCB8223187C3EB500BE2617 /* Build configuration list for PBXProject "Tropesios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -234,7 +302,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6CCB8227187C3EB500BE2617 /* tropesios */,
+				6CCB8227187C3EB500BE2617 /* Tropesios */,
 				6CCB8250187C3EB500BE2617 /* tropesiosTests */,
 			);
 		};
@@ -245,9 +313,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CC54921187EE11B006B7C28 /* Zepto.min.js in Resources */,
+				6CC54922187EE11B006B7C28 /* Script.js in Resources */,
+				6CC5491C187ED64E006B7C28 /* Main.storyboard in Resources */,
 				6CCB824C187C3EB500BE2617 /* Images.xcassets in Resources */,
+				6CC548F1187ED151006B7C28 /* Style.css in Resources */,
 				6CCB8238187C3EB500BE2617 /* InfoPlist.strings in Resources */,
-				6CCB8241187C3EB500BE2617 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,8 +340,12 @@
 				6CCB824A187C3EB500BE2617 /* DetailViewController.m in Sources */,
 				6CCB8247187C3EB500BE2617 /* MasterViewController.m in Sources */,
 				6CCB823E187C3EB500BE2617 /* AppDelegate.m in Sources */,
-				6CCB8244187C3EB500BE2617 /* tropesios.xcdatamodeld in Sources */,
+				6CC548FB187ED229006B7C28 /* TFHpple.m in Sources */,
+				6CCB8244187C3EB500BE2617 /* Tropesios.xcdatamodeld in Sources */,
+				6CCB826F187C7F3B00BE2617 /* TvTropes.m in Sources */,
 				6CCB823A187C3EB500BE2617 /* main.m in Sources */,
+				6CC548FD187ED229006B7C28 /* XPathQuery.m in Sources */,
+				6CC548FC187ED229006B7C28 /* TFHppleElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +362,7 @@
 /* Begin PBXTargetDependency section */
 		6CCB8258187C3EB500BE2617 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6CCB8227187C3EB500BE2617 /* tropesios */;
+			target = 6CCB8227187C3EB500BE2617 /* Tropesios */;
 			targetProxy = 6CCB8257187C3EB500BE2617 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -402,8 +477,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "tropesios/tropesios-Prefix.pch";
-				INFOPLIST_FILE = "tropesios/tropesios-Info.plist";
+				GCC_PREFIX_HEADER = "Tropesios/Tropesios-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "Tropesios/Tropesios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -418,8 +498,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "tropesios/tropesios-Prefix.pch";
-				INFOPLIST_FILE = "tropesios/tropesios-Info.plist";
+				GCC_PREFIX_HEADER = "Tropesios/Tropesios-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				INFOPLIST_FILE = "Tropesios/Tropesios-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -471,7 +556,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6CCB8223187C3EB500BE2617 /* Build configuration list for PBXProject "tropesios" */ = {
+		6CCB8223187C3EB500BE2617 /* Build configuration list for PBXProject "Tropesios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CCB8261187C3EB500BE2617 /* Debug */,
@@ -480,13 +565,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CCB8263187C3EB500BE2617 /* Build configuration list for PBXNativeTarget "tropesios" */ = {
+		6CCB8263187C3EB500BE2617 /* Build configuration list for PBXNativeTarget "Tropesios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6CCB8264187C3EB500BE2617 /* Debug */,
 				6CCB8265187C3EB500BE2617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6CCB8266187C3EB500BE2617 /* Build configuration list for PBXNativeTarget "tropesiosTests" */ = {
 			isa = XCConfigurationList;
@@ -495,16 +581,18 @@
 				6CCB8268187C3EB500BE2617 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6CCB8242187C3EB500BE2617 /* tropesios.xcdatamodeld */ = {
+		6CCB8242187C3EB500BE2617 /* Tropesios.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				6CCB8243187C3EB500BE2617 /* tropesios.xcdatamodel */,
 			);
 			currentVersion = 6CCB8243187C3EB500BE2617 /* tropesios.xcdatamodel */;
+			name = Tropesios.xcdatamodeld;
 			path = tropesios.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

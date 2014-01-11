@@ -6,11 +6,16 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "DetailViewController.h"
+#import "TFHpple.h"
 
 @interface DetailViewController ()
+
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-- (void)configureView;
+@property (nonatomic) BOOL spoilersVisible;
+
 @end
 
 @implementation DetailViewController
@@ -23,7 +28,6 @@
         _detailItem = newDetailItem;
         
         // Update the view.
-        [self configureView];
     }
 
     if (self.masterPopoverController != nil) {
@@ -31,26 +35,56 @@
     }        
 }
 
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
-    }
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    
+    self.spoilersVisible = NO;
+    
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURL *url = [NSURL URLWithString:@"http://tvtropes.org/pmwiki/pmwiki.php/Main/AbortedDeclarationOfLove"];
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:sessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        TFHpple *hpple = [TFHpple hppleWithHTMLData:data encoding:@"ISO-8859-1"];
+
+        TFHppleElement *title = [hpple peekAtSearchWithXPathQuery:@"//div[@class='pagetitle']/span"];
+        TFHppleElement *text = [hpple peekAtSearchWithXPathQuery:@"//div[@id='wikitext']"];
+        
+        NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"Style" ofType:@"css"];
+        cssFile = [NSURL fileURLWithPath:cssFile];
+        //NSString *cssData = [NSString stringWithContentsOfFile:cssFile encoding:NSUTF8StringEncoding error:NULL];
+        
+        NSString *path = [[NSBundle mainBundle] bundlePath];
+        NSURL *baseURL = [NSURL fileURLWithPath:path];
+        
+        NSString *html = @"<!DOCTYPE html>"
+        "<html>"
+        "  <head>"
+        "    <link rel='stylesheet' type='text/css' href='Style.css'/>"
+        "    <script type='text/javascript' src='Zepto.min.js'></script>"
+        "    <script type='text/javascript' src='Script.js'></script>"
+        "  </head>"
+        "  <body>"
+        "    <h1>%@</h1>"
+        "    %@"
+        "  </body>"
+        "</html>";
+        
+        [self.webView loadHTMLString:[NSString stringWithFormat:html, title.text, text.raw] baseURL:baseURL];
+    
+    }];
+    [task resume];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)toggleSpoiler:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *command = self.spoilersVisible ? @"hideAllSpoilers();" : @"showAllSpoilers();";
+    
+    [self.webView stringByEvaluatingJavaScriptFromString:command];
+    self.spoilersVisible = !self.spoilersVisible;
 }
 
 #pragma mark - Split view

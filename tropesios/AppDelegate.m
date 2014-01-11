@@ -20,11 +20,9 @@
 {
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    splitViewController.delegate = (id)navigationController.topViewController;
+    splitViewController.delegate = (id)[splitViewController.viewControllers lastObject];
 
-    UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-    MasterViewController *controller = (MasterViewController *)masterNavigationController.topViewController;
+    MasterViewController *controller = (MasterViewController*) splitViewController.viewControllers[0];
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }

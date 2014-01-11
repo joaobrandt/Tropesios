@@ -4,14 +4,24 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>tropesios.xcscheme</key>
+		<key>Tropesios.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>tropesios copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6CC54900187ED56C006B7C28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6CCB8227187C3EB500BE2617</key>
 		<dict>
 			<key>primary</key>
