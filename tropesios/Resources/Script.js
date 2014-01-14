@@ -8,6 +8,11 @@ $(document).ready(function() {
 	$(".spoiler").click(function() {
 		$(this).toggleClass("spoiler-visible");
 	});
+
+	$(".twikilink").each(function() {
+		var ref = $(this).attr("href").replace("http://tvtropes.org/pmwiki/pmwiki.php/", "tvtropeswiki:");
+		$(this).attr("href", ref);
+	});
 });
 
 function showAllSpoilers() {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageViewController : UIViewController <UISplitViewControllerDelegate>
+@interface PageViewController : UIViewController <UIWebViewDelegate, UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
@@ -22,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)toggleSpoilers:(id)sender;
+- (IBAction)goBack:(id)sender;
+- (IBAction)goForward:(id)sender;
 
 @end

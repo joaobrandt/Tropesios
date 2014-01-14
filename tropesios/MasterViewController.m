@@ -8,7 +8,7 @@
 
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
+#import "PageViewController.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -31,7 +31,7 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[self.splitViewController.viewControllers lastObject];
+    self.detailViewController = (PageViewController *)[self.splitViewController.viewControllers lastObject];
 }
 
 - (void)didReceiveMemoryWarning

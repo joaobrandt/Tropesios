@@ -1,16 +1,14 @@
 //
-//  AppDelegate.m
-//  tropesios
+//  TropesiosAppDelegate.m
+//  Tropesios
 //
 //  Created by João Paulo Gonçalves on 07/01/14.
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "TropesiosAppDelegate.h"
 
-#import "MasterViewController.h"
-
-@implementation AppDelegate
+@implementation TropesiosAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -22,8 +20,10 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     splitViewController.delegate = (id)[splitViewController.viewControllers lastObject];
 
+    /*
     MasterViewController *controller = (MasterViewController*) splitViewController.viewControllers[0];
     controller.managedObjectContext = self.managedObjectContext;
+     */
     return YES;
 }
 							
