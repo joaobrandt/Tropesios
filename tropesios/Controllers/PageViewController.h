@@ -6,13 +6,11 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Page.h"
 
 @interface PageViewController : UIViewController <UIWebViewDelegate, UISplitViewControllerDelegate>
 
-@property (strong, nonatomic) id detailItem;
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *contentsButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *spoilersButton;
@@ -20,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *actionsButton;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+- (void)loadPage:(Page*)page;
 
 - (IBAction)toggleSpoilers:(id)sender;
 - (IBAction)goBack:(id)sender;

@@ -7,6 +7,7 @@
 //
 
 #import "TropesiosAppDelegate.h"
+#import "PageViewController.h"
 #import "HistoryViewController.h"
 
 @implementation TropesiosAppDelegate
@@ -18,12 +19,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    splitViewController.delegate = (id)[splitViewController.viewControllers lastObject];
-    
+
+    PageViewController *pageViewController = (PageViewController*) [splitViewController.viewControllers lastObject];
+    splitViewController.delegate = pageViewController;
+
     UITabBarController *tabBarController = (UITabBarController*) splitViewController.viewControllers[0];
     
     HistoryViewController *controller = (HistoryViewController*) tabBarController.viewControllers[0];
     controller.managedObjectContext = self.managedObjectContext;
+    controller.pageViewController = pageViewController;
     
     return YES;
 }
@@ -66,7 +70,7 @@
     }
 }
 
-#pragma mark - Core Data
+#pragma mark - Properties
 
 - (NSManagedObjectContext*)managedObjectContext
 {
@@ -128,8 +132,6 @@
     
     return _persistentStoreCoordinator;
 }
-
-#pragma mark - Application's Documents Directory
 
 - (NSURL*)applicationDocumentsDirectory
 {

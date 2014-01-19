@@ -20,7 +20,6 @@
                                 <rect key="frame" x="0.0" y="23" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem image="Page Data" id="Gtp-gY-6QW"/>
                                     <barButtonItem enabled="NO" image="Back" id="ftp-IY-Ofn">
                                         <connections>
                                             <action selector="goBack:" destination="JEX-9P-axG" id="x2x-je-xmJ"/>
@@ -76,14 +75,13 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="actionsButton" destination="Tkb-Ht-ada" id="feK-VN-ncA"/>
                         <outlet property="backButton" destination="ftp-IY-Ofn" id="pQ2-Kz-Ofg"/>
-                        <outlet property="contentsButton" destination="Gtp-gY-6QW" id="4aE-i0-4X2"/>
                         <outlet property="forwardButton" destination="ajc-2Y-H2y" id="bCa-Zk-3wU"/>
                         <outlet property="spoilersButton" destination="gqU-V6-eGy" id="Ddz-vs-GsW"/>
                         <outlet property="textChangeButton" destination="Atq-NN-dhY" id="h8q-7O-Wdd"/>
+                        <outlet property="toolbar" destination="Qyk-Fh-JBc" id="n10-bB-KV1"/>
                         <outlet property="webView" destination="YTb-Ox-g3u" id="opS-Ku-EzJ"/>
                     </connections>
                 </viewController>
@@ -146,15 +144,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="-862"/>
+            <point key="canvasLocation" x="1033" y="-870"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="eQV-RQ-pbs">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="3tC-k4-pwk" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="3jj-2D-7te">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -171,7 +169,6 @@
     <resources>
         <image name="Back" width="25" height="25"/>
         <image name="Forward" width="25" height="25"/>
-        <image name="Page Data" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
         <image name="Spoilers" width="25" height="25"/>
         <image name="Text Change" width="25" height="25"/>

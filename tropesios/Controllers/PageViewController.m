@@ -13,31 +13,13 @@
 
 @interface PageViewController () <PageManagerDelegate>
 
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
-@property (strong, nonatomic) PageManager *pageManager;
 @property (nonatomic) BOOL spoilersVisible;
+@property (strong, nonatomic) PageManager *pageManager;
+@property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
 
 @implementation PageViewController
-
-
-
-#pragma mark - Managing the detail item
-
-- (void)setDetailItem:(id)newDetailItem
-{
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-        
-        // Update the view.
-    }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
-}
-
 
 - (void)viewDidLoad
 {
@@ -46,8 +28,16 @@
     self.spoilersVisible = NO;
     self.pageManager = [PageManager new];
     self.pageManager.delegate = self;
+    [self.pageManager loadPageWithId:@"Main/AbortedDeclarationOfLove"];
+}
+
+- (void)loadPage:(Page *)page
+{
+    [self.pageManager loadPage:page];
     
-    [self.pageManager loadPage:@"Main/AbortedDeclarationOfLove"];
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (IBAction)toggleSpoilers:(id)sender
@@ -68,7 +58,7 @@
     // TODO
 }
 
-#pragma mark PageManagerDelegate
+#pragma mark - PageManagerDelegate
 
 - (void)pageLoaded:(Page*)page
 {
@@ -94,7 +84,7 @@
     
 }
 
-#pragma mark UIWebViewDelegate
+#pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
@@ -102,25 +92,34 @@
         return YES;
     
     if ([request.URL.scheme isEqualToString:@"tvtropeswiki"])
-        [self.pageManager loadPage:request.URL.resourceSpecifier];
+        [self.pageManager loadPageWithId:request.URL.resourceSpecifier];
         
     return NO;
 }
 
-#pragma mark - Split view
+#pragma mark - UISplitViewControllerDelegate
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    barButtonItem.image = [UIImage imageNamed:@"Master"];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.toolbar.items.count + 1];
+    [array addObject:barButtonItem];
+    [array addObjectsFromArray:self.toolbar.items];
+    
+    [self.toolbar setItems:array];
     self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
+    [array removeObject:barButtonItem];
+    
+    [self.toolbar setItems:array];
     self.masterPopoverController = nil;
 }
+
+
 
 @end

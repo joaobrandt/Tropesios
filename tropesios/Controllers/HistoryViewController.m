@@ -53,7 +53,7 @@
     return [[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Page *page = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
@@ -61,6 +61,14 @@
     cell.textLabel.text = page.title;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Page *page = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    [self.pageViewController loadPage:page];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -104,7 +112,5 @@
 {
     [self.tableView endUpdates];
 }
-
-
 
 @end

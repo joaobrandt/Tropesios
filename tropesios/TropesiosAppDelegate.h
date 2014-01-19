@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PageManager.h"
 
 @interface TropesiosAppDelegate : UIResponder <UIApplicationDelegate>
 

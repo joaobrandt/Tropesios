@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Page.h"
 
 @protocol PageManagerDelegate <NSObject>
 
@@ -16,8 +16,9 @@
 
 @interface PageManager : NSObject
 
-@property (nonatomic) id<PageManagerDelegate> delegate;
+@property (strong, nonatomic) id<PageManagerDelegate> delegate;
 
-- (void)loadPage:(NSString*)pageId;
+- (void)loadPage:(Page*)page;
+- (void)loadPageWithId:(NSString*)pageId;
 
 @end

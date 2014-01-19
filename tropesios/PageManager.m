@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import "Page.h"
 #import "SubPage.h"
 #import "Topic.h"
 #import "PageManager.h"
@@ -17,23 +16,30 @@
 @interface PageManager ()
 
 @property (readonly, nonatomic, retain) NSURLSession *urlSession;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation PageManager
 
 @synthesize urlSession = _urlSession;
+@synthesize managedObjectContext = _managedObjectContext;
 
-- (void)loadPage:(NSString *)pageId
+- (void)loadPage:(Page *)page
 {
-    
+    // TODO
+    [self loadPageWithId:page.pageId];
+}
+
+- (void)loadPageWithId:(NSString *)pageId
+{
     // **************************************
     // LOCAL LOADING
     // **************************************
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Page class])];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"pageId = %@", pageId];
     
-    NSArray* entities = [AppDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSArray* entities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if (entities.count > 0) {
         Page* page = [entities objectAtIndex:0];
         [self.delegate pageLoaded:page];
@@ -60,20 +66,20 @@
         // **************************************
         // Storing entities
         // **************************************
-        Page *page = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Page class]) inManagedObjectContext:AppDelegate.managedObjectContext];
+        Page *page = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Page class]) inManagedObjectContext:self.managedObjectContext];
         page.pageId = pageId;
         page.title = titleElement.text;
         page.contents = contentsElement.raw;
         page.fetchedIn = [NSDate date];
         
-        Topic *topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:AppDelegate.managedObjectContext];
+        Topic *topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
         topic.page = page;
         topic.topicId = @"0";
         topic.title = @"Contents";
         [page addTopicsObject:topic];
         
         for (TFHppleElement *element in folders) {
-            topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:AppDelegate.managedObjectContext];
+            topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
             topic.page = page;
             topic.topicId = @"0";
             topic.title = element.text;
@@ -95,11 +101,19 @@
 
 - (NSURLSession*)urlSession
 {
-    if (!_urlSession) {
+    if (_urlSession == nil) {
         NSURLSessionConfiguration *urlSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
         _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     return _urlSession;
+}
+
+- (NSManagedObjectContext*)managedObjectContext
+{
+    if (_managedObjectContext == nil) {
+        _managedObjectContext = AppDelegate.managedObjectContext;
+    }
+    return _managedObjectContext;
 }
 
 @end

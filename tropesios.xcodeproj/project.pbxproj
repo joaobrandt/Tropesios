@@ -27,7 +27,6 @@
 		6CCB823A187C3EB500BE2617 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8239187C3EB500BE2617 /* main.m */; };
 		6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB823D187C3EB500BE2617 /* TropesiosAppDelegate.m */; };
 		6CCB8244187C3EB500BE2617 /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8242187C3EB500BE2617 /* Tropesios.xcdatamodeld */; };
-		6CCB8247187C3EB500BE2617 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8246187C3EB500BE2617 /* MasterViewController.m */; };
 		6CCB824A187C3EB500BE2617 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8249187C3EB500BE2617 /* PageViewController.m */; };
 		6CCB824C187C3EB500BE2617 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB824B187C3EB500BE2617 /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -66,8 +65,6 @@
 		6CCB823D187C3EB500BE2617 /* TropesiosAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TropesiosAppDelegate.m; sourceTree = "<group>"; };
 		6CCB8240187C3EB500BE2617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CCB8243187C3EB500BE2617 /* Tropesios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tropesios.xcdatamodel; sourceTree = "<group>"; };
-		6CCB8245187C3EB500BE2617 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		6CCB8246187C3EB500BE2617 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		6CCB8248187C3EB500BE2617 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		6CCB8249187C3EB500BE2617 /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		6CCB824B187C3EB500BE2617 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
@@ -108,12 +105,10 @@
 		6CC11FDB188BFD390005F90F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6CCB8245187C3EB500BE2617 /* MasterViewController.h */,
-				6CCB8246187C3EB500BE2617 /* MasterViewController.m */,
-				6CCB8248187C3EB500BE2617 /* PageViewController.h */,
-				6CCB8249187C3EB500BE2617 /* PageViewController.m */,
 				6CC11FDC188C2D090005F90F /* HistoryViewController.h */,
 				6CC11FDD188C2D090005F90F /* HistoryViewController.m */,
+				6CCB8248187C3EB500BE2617 /* PageViewController.h */,
+				6CCB8249187C3EB500BE2617 /* PageViewController.m */,
 			);
 			name = Controllers;
 			path = Tropesios/Controllers;
@@ -294,7 +289,6 @@
 			files = (
 				6CB0B9F4188308A80071D1CA /* Topic.m in Sources */,
 				6CCB824A187C3EB500BE2617 /* PageViewController.m in Sources */,
-				6CCB8247187C3EB500BE2617 /* MasterViewController.m in Sources */,
 				6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */,
 				6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */,
 				6CB0B9EE188308A70071D1CA /* Page.m in Sources */,

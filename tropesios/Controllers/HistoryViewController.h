@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
+#import "PageViewController.h"
+
 @interface HistoryViewController : UITableViewController
 
+@property (strong, nonatomic) PageViewController *pageViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
