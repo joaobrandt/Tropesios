@@ -12,6 +12,7 @@
 		6CB0B9F1188308A80071D1CA /* SubPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0B9F0188308A80071D1CA /* SubPage.m */; };
 		6CB0B9F4188308A80071D1CA /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0B9F3188308A80071D1CA /* Topic.m */; };
 		6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0B9F618830B7D0071D1CA /* PageManager.m */; };
+		6CC11FDE188C2D090005F90F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC11FDD188C2D090005F90F /* HistoryViewController.m */; };
 		6CC548F1187ED151006B7C28 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 6CC548F0187ED151006B7C28 /* Style.css */; };
 		6CC548FB187ED229006B7C28 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC548F5187ED229006B7C28 /* TFHpple.m */; };
 		6CC548FC187ED229006B7C28 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC548F7187ED229006B7C28 /* TFHppleElement.m */; };
@@ -23,7 +24,6 @@
 		6CCB822E187C3EB500BE2617 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB822D187C3EB500BE2617 /* CoreGraphics.framework */; };
 		6CCB8230187C3EB500BE2617 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB822F187C3EB500BE2617 /* UIKit.framework */; };
 		6CCB8232187C3EB500BE2617 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCB8231187C3EB500BE2617 /* CoreData.framework */; };
-		6CCB8238187C3EB500BE2617 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CCB8236187C3EB500BE2617 /* InfoPlist.strings */; };
 		6CCB823A187C3EB500BE2617 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8239187C3EB500BE2617 /* main.m */; };
 		6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB823D187C3EB500BE2617 /* TropesiosAppDelegate.m */; };
 		6CCB8244187C3EB500BE2617 /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CCB8242187C3EB500BE2617 /* Tropesios.xcdatamodeld */; };
@@ -42,6 +42,9 @@
 		6CB0B9F3188308A80071D1CA /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		6CB0B9F518830B7D0071D1CA /* PageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageManager.h; path = Tropesios/PageManager.h; sourceTree = SOURCE_ROOT; };
 		6CB0B9F618830B7D0071D1CA /* PageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageManager.m; path = Tropesios/PageManager.m; sourceTree = SOURCE_ROOT; };
+		6CC11FDC188C2D090005F90F /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		6CC11FDD188C2D090005F90F /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		6CC11FE1188C435D0005F90F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6CC548F0187ED151006B7C28 /* Style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.css; };
 		6CC548F4187ED229006B7C28 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
 		6CC548F5187ED229006B7C28 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
@@ -57,7 +60,6 @@
 		6CCB822D187C3EB500BE2617 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6CCB822F187C3EB500BE2617 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6CCB8231187C3EB500BE2617 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		6CCB8237187C3EB500BE2617 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CCB8239187C3EB500BE2617 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CCB823B187C3EB500BE2617 /* Tropesios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tropesios-Prefix.pch"; sourceTree = "<group>"; };
 		6CCB823C187C3EB500BE2617 /* TropesiosAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TropesiosAppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +112,8 @@
 				6CCB8246187C3EB500BE2617 /* MasterViewController.m */,
 				6CCB8248187C3EB500BE2617 /* PageViewController.h */,
 				6CCB8249187C3EB500BE2617 /* PageViewController.m */,
+				6CC11FDC188C2D090005F90F /* HistoryViewController.h */,
+				6CC11FDD188C2D090005F90F /* HistoryViewController.m */,
 			);
 			name = Controllers;
 			path = Tropesios/Controllers;
@@ -209,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				6CC548FE187ED3A9006B7C28 /* Tropesios-Info.plist */,
-				6CCB8236187C3EB500BE2617 /* InfoPlist.strings */,
 				6CCB8239187C3EB500BE2617 /* main.m */,
 				6CCB823B187C3EB500BE2617 /* Tropesios-Prefix.pch */,
 			);
@@ -279,7 +282,6 @@
 				6CC5491C187ED64E006B7C28 /* Main.storyboard in Resources */,
 				6CCB824C187C3EB500BE2617 /* Images.xcassets in Resources */,
 				6CC548F1187ED151006B7C28 /* Style.css in Resources */,
-				6CCB8238187C3EB500BE2617 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +298,7 @@
 				6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */,
 				6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */,
 				6CB0B9EE188308A70071D1CA /* Page.m in Sources */,
+				6CC11FDE188C2D090005F90F /* HistoryViewController.m in Sources */,
 				6CC548FB187ED229006B7C28 /* TFHpple.m in Sources */,
 				6CCB8244187C3EB500BE2617 /* Tropesios.xcdatamodeld in Sources */,
 				6CCB823A187C3EB500BE2617 /* main.m in Sources */,
@@ -308,18 +311,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		6CCB8236187C3EB500BE2617 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6CCB8237187C3EB500BE2617 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		6CCB823F187C3EB500BE2617 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6CCB8240187C3EB500BE2617 /* Base */,
+				6CC11FE1188C435D0005F90F /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
