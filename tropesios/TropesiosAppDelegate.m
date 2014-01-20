@@ -25,7 +25,9 @@
 
     UITabBarController *tabBarController = (UITabBarController*) splitViewController.viewControllers[0];
     
-    HistoryViewController *controller = (HistoryViewController*) tabBarController.viewControllers[0];
+    UINavigationController *navigationController = (UINavigationController*)tabBarController.viewControllers[0];
+    
+    HistoryViewController *controller = (HistoryViewController*) navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     controller.pageViewController = pageViewController;
     
