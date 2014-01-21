@@ -1,5 +1,5 @@
 //
-//  Topic.h
+//  History.h
 //  Tropesios
 //
 //  Created by João Paulo Gonçalves on 20/01/14.
@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Content;
+@class Page;
 
-@interface Topic : NSManagedObject
+@interface History : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * topicId;
-@property (nonatomic, retain) Content *content;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * dateName;
+@property (nonatomic, retain) Page *page;
 
 @end

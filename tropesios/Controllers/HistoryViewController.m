@@ -7,6 +7,7 @@
 //
 
 #import "HistoryViewController.h"
+#import "History.h"
 #import "Page.h"
 
 @interface HistoryViewController () <NSFetchedResultsControllerDelegate>
@@ -20,11 +21,11 @@
 - (NSFetchedResultsController*)fetchedResultsController
 {
     if (_fetchedResultsController == nil) {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Page class])];
-        fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"fetchedIn" ascending:NO]];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
+        fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]];
         fetchRequest.fetchBatchSize = 20;
         
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Root"];
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"dateName" cacheName:@"MainCache"];
         _fetchedResultsController.delegate = self;
     }
     return _fetchedResultsController;
@@ -45,29 +46,50 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.fetchedResultsController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.fetchedResultsController.sections objectAtIndex:section] numberOfObjects];
+    if (self.fetchedResultsController.sections.count == 0) {
+        return 0;
+    }
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController.sections objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (self.fetchedResultsController.sections.count == 0) {
+        return nil;
+    }
+    
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController.sections objectAtIndex:section];
+    return [sectionInfo name];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return self.fetchedResultsController.sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Page *page = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    History *history = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HistoryCell" forIndexPath:indexPath];
-    cell.textLabel.text = page.title;
+    cell.textLabel.text = history.page.title;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Page *page = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    History *history = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.pageViewController loadPage:page];
+    [self.pageViewController loadPage:history.page];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -9,6 +9,7 @@
 #import "PageViewController.h"
 
 #import "Page.h"
+#import "Content.h"
 #import "PageManager.h"
 
 @interface PageViewController () <PageManagerDelegate>
@@ -80,7 +81,7 @@
     "  </body>"
     "</html>";
     
-    [self.webView loadHTMLString:[NSString stringWithFormat:html, page.title, page.contents] baseURL:baseURL];
+    [self.webView loadHTMLString:[NSString stringWithFormat:html, page.title, page.content.html] baseURL:baseURL];
     
 }
 

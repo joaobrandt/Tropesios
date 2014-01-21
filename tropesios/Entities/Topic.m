@@ -2,18 +2,18 @@
 //  Topic.m
 //  Tropesios
 //
-//  Created by João Paulo Gonçalves on 12/01/14.
+//  Created by João Paulo Gonçalves on 20/01/14.
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
 #import "Topic.h"
-#import "Page.h"
+#import "Content.h"
 
 
 @implementation Topic
 
-@dynamic topicId;
 @dynamic title;
-@dynamic page;
+@dynamic topicId;
+@dynamic content;
 
 @end

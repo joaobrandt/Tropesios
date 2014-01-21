@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Content" representedClassName="Content" syncable="YES">
+        <attribute name="html" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="content" inverseEntity="Page" syncable="YES"/>
+        <relationship name="subPages" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubPage" inverseName="content" inverseEntity="SubPage" syncable="YES"/>
+        <relationship name="topics" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Topic" inverseName="content" inverseEntity="Topic" syncable="YES"/>
+    </entity>
+    <entity name="History" representedClassName="History" syncable="YES">
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="dateName" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <relationship name="page" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="histories" inverseEntity="Page" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="date"/>
+            </compoundIndex>
+        </compoundIndexes>
+    </entity>
+    <entity name="Page" representedClassName="Page" syncable="YES">
+        <attribute name="pageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="page" inverseEntity="Content" syncable="YES"/>
+        <relationship name="histories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="History" inverseName="page" inverseEntity="History" syncable="YES"/>
+    </entity>
+    <entity name="SubPage" representedClassName="SubPage" syncable="YES">
+        <attribute name="subPageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Content" inverseName="subPages" inverseEntity="Content" syncable="YES"/>
+    </entity>
+    <entity name="Topic" representedClassName="Topic" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topicId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Content" inverseName="topics" inverseEntity="Content" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="History" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Page" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Content" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SubPage" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Topic" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

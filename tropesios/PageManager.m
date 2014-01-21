@@ -6,9 +6,13 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
+#import "PageManager.h"
+
+#import "Page.h"
+#import "History.h"
+#import "Content.h"
 #import "SubPage.h"
 #import "Topic.h"
-#import "PageManager.h"
 
 #import "TFHpple.h"
 #import "TFHppleElement.h"
@@ -33,27 +37,37 @@
 
 - (void)loadPageWithId:(NSString *)pageId
 {
+    Page* page = nil;
+    
     // **************************************
-    // LOCAL LOADING
+    // Check page existence
     // **************************************
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Page class])];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"pageId = %@", pageId];
     
     NSArray* entities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     if (entities.count > 0) {
-        Page* page = [entities objectAtIndex:0];
-        [self.delegate pageLoaded:page];
+        page = [entities objectAtIndex:0];
+    } else {
+        page = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Page class]) inManagedObjectContext:self.managedObjectContext];
+        page.pageId = pageId;
+    }
+
+    // **************************************
+    // Check content is stored
+    // **************************************
+    if (page.content != nil) {
+        [self pageLoaded:page];
         return;
     }
     
     // **************************************
-    // REMOTE LOADING
+    // Loading remote content;
     // **************************************
-    NSString *stringURL = [NSString stringWithFormat:@"http://tvtropes.org/pmwiki/pmwiki.php/%@", pageId];
-    NSURL *url = [NSURL URLWithString:stringURL];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://tvtropes.org/pmwiki/pmwiki.php/%@", pageId]];
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
         // **************************************
         // Converting downloaded page
         // **************************************
@@ -66,37 +80,72 @@
         // **************************************
         // Storing entities
         // **************************************
-        Page *page = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Page class]) inManagedObjectContext:self.managedObjectContext];
-        page.pageId = pageId;
         page.title = titleElement.text;
-        page.contents = contentsElement.raw;
-        page.fetchedIn = [NSDate date];
+        
+        Content *content = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Content class]) inManagedObjectContext:self.managedObjectContext];
+        content.html = contentsElement.raw;
+        content.page = page;
         
         Topic *topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
-        topic.page = page;
         topic.topicId = @"0";
         topic.title = @"Contents";
-        [page addTopicsObject:topic];
+        topic.content = content;
         
         for (TFHppleElement *element in folders) {
             topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
-            topic.page = page;
             topic.topicId = @"0";
             topic.title = element.text;
-            [page addTopicsObject:topic];
+            topic.content = content;
         }
-        
-        [AppDelegate.managedObjectContext save:nil];
         
         // **************************************
         // Notifing delegate
         // **************************************
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        [self.delegate pageLoaded:page];
+        [self pageLoaded:page];
     }];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [task resume];
+}
+
+- (void)pageLoaded:(Page*)page
+{
+    // **************************************
+    // Defining time period to today
+    // **************************************
+    NSDate *today = [NSDate date];
+
+    NSDateComponents *oneDay = [NSDateComponents new];
+    oneDay.day = 1;
+
+    NSDate *lastMidnight = [NSCalendar.currentCalendar dateFromComponents:[NSCalendar.currentCalendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today]];
+    NSDate *nextMidnight = [NSCalendar.currentCalendar dateByAddingComponents:oneDay toDate:lastMidnight options:NSWrapCalendarComponents];
+    
+    // **************************************
+    // Check history duplicate
+    // **************************************
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"page == %@ AND date >= %@ AND date <= %@", page, lastMidnight, nextMidnight];
+    
+    NSArray* entities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    History *history;
+    if (entities.count > 0) {
+        history = [entities objectAtIndex:0];
+    } else {
+        history = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([History class]) inManagedObjectContext:self.managedObjectContext];
+        history.page = page;
+    }
+    history.date = [NSDate date];
+    
+    // TODO Handle the error;
+    [self.managedObjectContext save:nil];
+    
+    // **************************************
+    // Notifying the delegate
+    // **************************************
+    [self.delegate pageLoaded:page];
 }
 
 - (NSURLSession*)urlSession
