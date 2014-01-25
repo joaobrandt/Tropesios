@@ -42,6 +42,43 @@
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
         exit(-1);
     }
+    
+    [self done:nil];
+}
+
+#pragma mark - Actions
+
+- (IBAction)edit:(id)sender
+{
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+    
+    UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clear:)];
+    self.navigationItem.leftBarButtonItem = clearButton;
+    
+    self.tableView.editing = YES;
+}
+
+- (IBAction)done:(id)sender
+{
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+    self.navigationItem.rightBarButtonItem = editButton;
+    self.navigationItem.leftBarButtonItem = nil;
+    
+    self.tableView.editing = NO;
+}
+
+- (IBAction)clear:(id)sender
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
+    fetchRequest.includesPropertyValues = NO;
+    
+    NSArray* histories = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (History* history in histories) {
+        [self.managedObjectContext deleteObject:history];
+    }
+    
+    [self.managedObjectContext save:nil];
 }
 
 #pragma mark - UITableViewDelegate

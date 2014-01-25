@@ -14,4 +14,8 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)edit:(id)sender;
+- (IBAction)done:(id)sender;
+- (IBAction)clear:(id)sender;
+
 @end
