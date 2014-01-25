@@ -16,11 +16,20 @@
 
 #import "TFHpple.h"
 #import "TFHppleElement.h"
+#import "NSManagedObject+Extensions.h"
+#import "NSDate+Extensions.h"
 
 @interface PageManager ()
 
-@property (readonly, nonatomic, retain) NSURLSession *urlSession;
+@property (readonly, retain, nonatomic) NSURLSession *urlSession;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) Page *currentPage;
+@property (nonatomic) NSMutableArray *backHistory;
+@property (nonatomic) NSMutableArray *forwardHistory;
+@property (nonatomic) BOOL navigationInHistory;
+
+- (void)pageLoaded:(Page*)page;
 
 @end
 
@@ -29,31 +38,78 @@
 @synthesize urlSession = _urlSession;
 @synthesize managedObjectContext = _managedObjectContext;
 
-- (void)loadPage:(Page *)page
+- (id)init
 {
-    // TODO
-    [self loadPageWithId:page.pageId];
+    self = [super init];
+    if (self != nil) {
+        self.backHistory = [NSMutableArray new];
+        self.forwardHistory = [NSMutableArray new];
+    }
+    return self;
 }
 
-- (void)loadPageWithId:(NSString *)pageId
+- (BOOL)canGoBack
 {
-    Page* page = nil;
-    
+    return self.backHistory.count > 0;
+}
+
+- (BOOL)canGoForward
+{
+    return self.forwardHistory.count > 0;
+}
+
+- (void)goToBackPage
+{
+    if ([self canGoBack]) {
+        NSString *pageId = [self.backHistory lastObject];
+        
+        [self.backHistory removeLastObject];
+        [self.forwardHistory addObject:self.currentPage.pageId];
+        
+        self.navigationInHistory = YES;
+        [self goToPageWithId:pageId];
+        self.navigationInHistory = NO;
+    }
+}
+
+- (void)goToForwardPage
+{
+    if ([self canGoForward]) {
+        NSString *pageId = [self.forwardHistory lastObject];
+        
+        [self.backHistory addObject:self.currentPage.pageId];
+        [self.forwardHistory removeLastObject];
+        
+        self.navigationInHistory = YES;
+        [self goToPageWithId:pageId];
+        self.navigationInHistory = NO;
+    }
+}
+
+- (void)goToPageWithId:(NSString *)pageId
+{
     // **************************************
     // Check page existence
     // **************************************
+    Page *page = [Page in:self.managedObjectContext getOneWithPredicate:@"pageId = %@", pageId];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Page class])];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"pageId = %@", pageId];
-    
-    NSArray* entities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    if (entities.count > 0) {
-        page = [entities objectAtIndex:0];
-    } else {
-        page = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Page class]) inManagedObjectContext:self.managedObjectContext];
+    if (page == nil) {
+        page = [Page newIn:self.managedObjectContext];
         page.pageId = pageId;
     }
+    
+    [self goToPage:page];
+}
 
+- (void)goToPage:(Page *)page
+{
+    // **************************************
+    // Check current page is already loaed
+    // **************************************
+    if ([page.objectID isEqual:self.currentPage.objectID]) {
+        return;
+    }
+    
     // **************************************
     // Check content is stored
     // **************************************
@@ -65,9 +121,14 @@
     // **************************************
     // Loading remote content;
     // **************************************
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://tvtropes.org/pmwiki/pmwiki.php/%@", pageId]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://tvtropes.org/pmwiki/pmwiki.php/%@", page.pageId]];
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error != nil) {
+            // TODO Handle
+            return;
+        }
+        
         // **************************************
         // Converting downloaded page
         // **************************************
@@ -82,17 +143,17 @@
         // **************************************
         page.title = titleElement.text;
         
-        Content *content = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Content class]) inManagedObjectContext:self.managedObjectContext];
+        Content *content = [Content newIn:self.managedObjectContext];
         content.html = contentsElement.raw;
         content.page = page;
         
-        Topic *topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
+        Topic *topic = [Topic newIn:self.managedObjectContext];
         topic.topicId = @"0";
         topic.title = @"Contents";
         topic.content = content;
         
         for (TFHppleElement *element in folders) {
-            topic = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([Topic class]) inManagedObjectContext:self.managedObjectContext];
+            topic = [Topic newIn:self.managedObjectContext];
             topic.topicId = @"0";
             topic.title = element.text;
             topic.content = content;
@@ -112,35 +173,41 @@
 - (void)pageLoaded:(Page*)page
 {
     // **************************************
-    // Defining time period to today
+    // Registring history;
     // **************************************
     NSDate *today = [NSDate date];
-
+    
     NSDateComponents *oneDay = [NSDateComponents new];
     oneDay.day = 1;
-
+    
     NSDate *lastMidnight = [NSCalendar.currentCalendar dateFromComponents:[NSCalendar.currentCalendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:today]];
     NSDate *nextMidnight = [NSCalendar.currentCalendar dateByAddingComponents:oneDay toDate:lastMidnight options:NSWrapCalendarComponents];
     
-    // **************************************
-    // Check history duplicate
-    // **************************************
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"page == %@ AND date >= %@ AND date <= %@", page, lastMidnight, nextMidnight];
+    History *history = [History in:self.managedObjectContext getOneWithPredicate:@"page == %@ AND date >= %@ AND date <= %@", page, lastMidnight, nextMidnight];
     
-    NSArray* entities = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-
-    History *history;
-    if (entities.count > 0) {
-        history = [entities objectAtIndex:0];
-    } else {
-        history = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([History class]) inManagedObjectContext:self.managedObjectContext];
+    if (history == nil) {
+        history = [History newIn:self.managedObjectContext];
         history.page = page;
     }
-    history.date = [NSDate date];
+    
+    history.date = today;
     
     // TODO Handle the error;
     [self.managedObjectContext save:nil];
+    
+    // **************************************
+    // Configurate navigation
+    // **************************************
+    
+    if (!self.navigationInHistory) {
+        [self.forwardHistory removeAllObjects];
+        
+        if (self.currentPage != nil) {
+            [self.backHistory addObject:self.currentPage.pageId];
+        }
+    }
+    
+    self.currentPage = page;
     
     // **************************************
     // Notifying the delegate

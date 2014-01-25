@@ -21,6 +21,8 @@
 - (NSFetchedResultsController*)fetchedResultsController
 {
     if (_fetchedResultsController == nil) {
+        [NSFetchedResultsController deleteCacheWithName:@"MainCache"];
+        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
         fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]];
         fetchRequest.fetchBatchSize = 20;
@@ -67,10 +69,6 @@
     return [sectionInfo name];
 }
 
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return self.fetchedResultsController.sectionIndexTitles;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
@@ -89,7 +87,7 @@
 {
     History *history = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.pageViewController loadPage:history.page];
+    [self.pageViewController goToPage:history.page];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

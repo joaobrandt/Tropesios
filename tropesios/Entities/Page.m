@@ -18,4 +18,9 @@
 @dynamic content;
 @dynamic histories;
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"%@ - %@", self.pageId, self.title];
+}
+
 @end

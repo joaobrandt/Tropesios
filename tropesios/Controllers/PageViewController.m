@@ -29,12 +29,12 @@
     self.spoilersVisible = NO;
     self.pageManager = [PageManager new];
     self.pageManager.delegate = self;
-    [self.pageManager loadPageWithId:@"Main/AbortedDeclarationOfLove"];
+    [self.pageManager goToPageWithId:@"Main/AbortedDeclarationOfLove"];
 }
 
-- (void)loadPage:(Page *)page
+- (void)goToPage:(Page *)page
 {
-    [self.pageManager loadPage:page];
+    [self.pageManager goToPage:page];
     
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
@@ -51,12 +51,12 @@
 
 - (IBAction)goBack:(id)sender
 {
-    // TODO
+    [self.pageManager goToBackPage];
 }
 
 - (IBAction)goForward:(id)sender
 {
-    // TODO
+    [self.pageManager goToForwardPage];
 }
 
 #pragma mark - PageManagerDelegate
@@ -82,7 +82,8 @@
     "</html>";
     
     [self.webView loadHTMLString:[NSString stringWithFormat:html, page.title, page.content.html] baseURL:baseURL];
-    
+    self.backButton.enabled = [self.pageManager canGoBack];
+    self.forwardButton.enabled = [self.pageManager canGoForward];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -93,7 +94,7 @@
         return YES;
     
     if ([request.URL.scheme isEqualToString:@"tvtropeswiki"])
-        [self.pageManager loadPageWithId:request.URL.resourceSpecifier];
+        [self.pageManager goToPageWithId:request.URL.resourceSpecifier];
         
     return NO;
 }

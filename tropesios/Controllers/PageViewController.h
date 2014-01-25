@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
-- (void)loadPage:(Page*)page;
+- (void)goToPage:(Page*)page;
 
 - (IBAction)toggleSpoilers:(id)sender;
 - (IBAction)goBack:(id)sender;

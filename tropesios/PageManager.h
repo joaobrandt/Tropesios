@@ -17,8 +17,12 @@
 @interface PageManager : NSObject
 
 @property (strong, nonatomic) id<PageManagerDelegate> delegate;
+@property (readonly, nonatomic) BOOL canGoBack;
+@property (readonly, nonatomic) BOOL canGoForward;
 
-- (void)loadPage:(Page*)page;
-- (void)loadPageWithId:(NSString*)pageId;
+- (void)goToPageWithId:(NSString*)pageId;
+- (void)goToPage:(Page*)page;
+- (void)goToForwardPage;
+- (void)goToBackPage;
 
 @end

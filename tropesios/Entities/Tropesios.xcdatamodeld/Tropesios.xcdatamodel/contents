@@ -20,7 +20,7 @@
         <attribute name="pageId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Content" inverseName="page" inverseEntity="Content" syncable="YES"/>
-        <relationship name="histories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="History" inverseName="page" inverseEntity="History" syncable="YES"/>
+        <relationship name="histories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="page" inverseEntity="History" syncable="YES"/>
     </entity>
     <entity name="SubPage" representedClassName="SubPage" syncable="YES">
         <attribute name="subPageId" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,9 +34,9 @@
         <relationship name="content" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Content" inverseName="topics" inverseEntity="Content" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Content" positionX="0" positionY="0" width="0" height="0"/>
         <element name="History" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Page" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Content" positionX="0" positionY="0" width="0" height="0"/>
         <element name="SubPage" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Topic" positionX="0" positionY="0" width="0" height="0"/>
     </elements>

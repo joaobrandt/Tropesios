@@ -2,7 +2,7 @@
 //  History.h
 //  Tropesios
 //
-//  Created by João Paulo Gonçalves on 20/01/14.
+//  Created by João Paulo Gonçalves on 25/01/14.
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
