@@ -56,16 +56,17 @@
     UIBarButtonItem *clearButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clear:)];
     self.navigationItem.leftBarButtonItem = clearButton;
     
-    self.tableView.editing = YES;
+    [self.tableView setEditing:YES animated:YES];
 }
 
 - (IBAction)done:(id)sender
 {
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+    
     self.navigationItem.rightBarButtonItem = editButton;
     self.navigationItem.leftBarButtonItem = nil;
     
-    self.tableView.editing = NO;
+    [self.tableView setEditing:NO animated:YES];
 }
 
 - (IBAction)clear:(id)sender
@@ -79,9 +80,10 @@
     }
     
     [self.managedObjectContext save:nil];
+    [self done:sender];
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UITableViewDataSourceDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -109,6 +111,17 @@
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
     return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        History *history = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:history];
+        [self.managedObjectContext save:nil];
+    }
+}
+
+#pragma mark - UITableViewDelegate
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -143,12 +156,12 @@
             break;
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
         case NSFetchedResultsChangeUpdate:
-            // TODO Update cell
+            [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
             break;
     }
 }
