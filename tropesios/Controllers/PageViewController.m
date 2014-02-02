@@ -10,6 +10,7 @@
 
 #import "Page.h"
 #import "Content.h"
+#import "Topic.h"
 
 @interface PageViewController ()
 
@@ -48,6 +49,23 @@
     [self.pageManager goToForwardPage];
 }
 
+- (void)closeMasterPopover
+{
+    if (self.masterPopoverController != nil) {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
+}
+
+- (void)scrollToTopic:(Topic *)topic
+{
+    if ([topic.page isEqual:self.pageManager.currentPage]) {
+        [self closeMasterPopover];
+        
+        NSString *command = [NSString stringWithFormat:@"scrollToTopic(%@);", topic.topicId];
+        [self.webView stringByEvaluatingJavaScriptFromString:command];
+    }
+}
+
 #pragma mark - Page Manager Observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -75,9 +93,7 @@
         self.backButton.enabled = [self.pageManager canGoBack];
         self.forwardButton.enabled = [self.pageManager canGoForward];
         
-        if (self.masterPopoverController != nil) {
-            [self.masterPopoverController dismissPopoverAnimated:YES];
-        }
+        [self closeMasterPopover];
     }
 }
 

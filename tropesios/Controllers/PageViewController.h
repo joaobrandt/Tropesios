@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) PageManager *pageManager;
 
+- (void)scrollToTopic:(Topic*)topic;
+
 - (IBAction)toggleSpoilers:(id)sender;
 - (IBAction)goBack:(id)sender;
 - (IBAction)goForward:(id)sender;

@@ -27,7 +27,6 @@
     PageViewController *pageViewController = (PageViewController*) [splitViewController.viewControllers lastObject];
     UITabBarController *tabBarController = (UITabBarController*) [splitViewController.viewControllers firstObject];
     
-    
     // **************************************
     // Configurate PAGE
     // **************************************
@@ -41,7 +40,7 @@
     ContentsViewController *contentsViewController = (ContentsViewController*) navigationController.topViewController;
     contentsViewController.managedObjectContext = self.managedObjectContext;
     contentsViewController.pageManager = self.pageManager;
-    
+    contentsViewController.pageViewController = pageViewController;
     
     // **************************************
     // Configurate HISTORY

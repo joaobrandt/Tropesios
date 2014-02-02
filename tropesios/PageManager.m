@@ -150,7 +150,7 @@
         content.html = contentsElement.raw;
         content.page = page;
         
-        int topicId = 0;
+        int topicId = -1;
         
         Topic *topic = [Topic newIn:self.managedObjectContext];
         topic.topicId = [NSNumber numberWithInt:topicId];

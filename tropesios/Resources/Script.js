@@ -2,8 +2,8 @@ $(document).ready(function() {
 	$("hr").remove();
 	$("div[onclick='toggleAllFolders();']").remove();
 
-	$(".folderlabel").each(function() {
-		$(this).replaceWith("<h3>" + $(this).text() + "</h3>");
+	$(".folderlabel").each(function(index, item) {
+		$(this).replaceWith("<h3 id='topic" + index + "'>" + $(this).text() + "</h3>");
 	});
 
 	$(".spoiler").click(function() {
@@ -22,4 +22,8 @@ function showAllSpoilers() {
 
 function hideAllSpoilers() {
 	$(".spoiler").removeClass("spoiler-visible");
+};
+
+function scrollToTopic(topicId) {
+	window.location.hash = topicId == -1 ? "" : "#topic" + topicId;
 };

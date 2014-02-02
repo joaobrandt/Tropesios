@@ -26,12 +26,14 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([object isEqual:self.pageManager] && [keyPath isEqualToString:@"currentPage"]) {
+        [NSFetchedResultsController deleteCacheWithName:@"TopicsCache"];
+        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Topic class])];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"page == %@", self.pageManager.currentPage];
         fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"topicId" ascending:YES]];
         fetchRequest.fetchBatchSize = 20;
         
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"MainCache"];
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"TopicsCache"];
         self.fetchedResultsController.delegate = self;
         
         NSError *error;
@@ -74,7 +76,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO;
+    Topic *topic = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.pageViewController scrollToTopic:topic];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
