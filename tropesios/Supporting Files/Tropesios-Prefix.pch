@@ -16,5 +16,5 @@
     #import <CoreData/CoreData.h>
 
     #import "TropesiosAppDelegate.h"
-    #define AppDelegate ( (TropesiosAppDelegate*) [UIApplication sharedApplication].delegate)
+    //#define AppDelegate ( (TropesiosAppDelegate*) [UIApplication sharedApplication].delegate)
 #endif

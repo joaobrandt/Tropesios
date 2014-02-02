@@ -21,8 +21,6 @@
 - (NSFetchedResultsController*)fetchedResultsController
 {
     if (_fetchedResultsController == nil) {
-        [NSFetchedResultsController deleteCacheWithName:@"MainCache"];
-        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([History class])];
         fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]];
         fetchRequest.fetchBatchSize = 20;
@@ -137,7 +135,7 @@
 {
     History *history = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.pageViewController goToPage:history.page];
+    [self.pageManager goToPage:history.page];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

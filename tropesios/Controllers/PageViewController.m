@@ -10,12 +10,10 @@
 
 #import "Page.h"
 #import "Content.h"
-#import "PageManager.h"
 
-@interface PageViewController () <PageManagerDelegate>
+@interface PageViewController ()
 
 @property (nonatomic) BOOL spoilersVisible;
-@property (strong, nonatomic) PageManager *pageManager;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
@@ -27,18 +25,9 @@
     [super viewDidLoad];
     
     self.spoilersVisible = NO;
-    self.pageManager = [PageManager new];
-    self.pageManager.delegate = self;
-    [self.pageManager goToPageWithId:@"Main/AbortedDeclarationOfLove"];
-}
-
-- (void)goToPage:(Page *)page
-{
-    [self.pageManager goToPage:page];
     
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
+    [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
+    [self.pageManager goToPageWithId:@"Main/AbortedDeclarationOfLove"];
 }
 
 - (IBAction)toggleSpoilers:(id)sender
@@ -59,31 +48,37 @@
     [self.pageManager goToForwardPage];
 }
 
-#pragma mark - PageManagerDelegate
+#pragma mark - Page Manager Observer
 
-- (void)pageLoaded:(Page*)page
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"Style" ofType:@"css"];
-    cssFile = [NSURL fileURLWithPath:cssFile];
-    
-    NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-    
-    NSString *html = @"<!DOCTYPE html>"
-    "<html>"
-    "  <head>"
-    "    <link rel='stylesheet' type='text/css' href='Style.css'/>"
-    "    <script type='text/javascript' src='Zepto.min.js'></script>"
-    "    <script type='text/javascript' src='Script.js'></script>"
-    "  </head>"
-    "  <body>"
-    "    <h1>%@</h1>"
-    "    %@"
-    "  </body>"
-    "</html>";
-    
-    [self.webView loadHTMLString:[NSString stringWithFormat:html, page.title, page.content.html] baseURL:baseURL];
-    self.backButton.enabled = [self.pageManager canGoBack];
-    self.forwardButton.enabled = [self.pageManager canGoForward];
+    if ([object isEqual:self.pageManager] && [keyPath isEqualToString:@"currentPage"]) {
+        NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"Style" ofType:@"css"];
+        cssFile = [NSURL fileURLWithPath:cssFile];
+        
+        NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+        
+        NSString *html = @"<!DOCTYPE html>"
+        "<html>"
+        "  <head>"
+        "    <link rel='stylesheet' type='text/css' href='Style.css'/>"
+        "    <script type='text/javascript' src='Zepto.min.js'></script>"
+        "    <script type='text/javascript' src='Script.js'></script>"
+        "  </head>"
+        "  <body>"
+        "    <h1>%@</h1>"
+        "    %@"
+        "  </body>"
+        "</html>";
+        
+        [self.webView loadHTMLString:[NSString stringWithFormat:html, self.pageManager.currentPage.title, self.pageManager.currentPage.content.html] baseURL:baseURL];
+        self.backButton.enabled = [self.pageManager canGoBack];
+        self.forwardButton.enabled = [self.pageManager canGoForward];
+        
+        if (self.masterPopoverController != nil) {
+            [self.masterPopoverController dismissPopoverAnimated:YES];
+        }
+    }
 }
 
 #pragma mark - UIWebViewDelegate

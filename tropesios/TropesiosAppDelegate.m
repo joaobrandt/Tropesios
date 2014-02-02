@@ -9,27 +9,47 @@
 #import "TropesiosAppDelegate.h"
 #import "PageViewController.h"
 #import "HistoryViewController.h"
+#import "ContentsViewController.h"
 
 @implementation TropesiosAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize pageManager = _pageManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [NSFetchedResultsController deleteCacheWithName:@"MainCache"];
+    
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-
+ 
     PageViewController *pageViewController = (PageViewController*) [splitViewController.viewControllers lastObject];
+    UITabBarController *tabBarController = (UITabBarController*) [splitViewController.viewControllers firstObject];
+    
+    
+    // **************************************
+    // Configurate PAGE
+    // **************************************
+    pageViewController.pageManager = self.pageManager;
     splitViewController.delegate = pageViewController;
 
-    UITabBarController *tabBarController = (UITabBarController*) splitViewController.viewControllers[0];
-    
+    // **************************************
+    // Configurate CONTENTS
+    // **************************************
     UINavigationController *navigationController = (UINavigationController*)tabBarController.viewControllers[0];
+    ContentsViewController *contentsViewController = (ContentsViewController*) navigationController.topViewController;
+    contentsViewController.managedObjectContext = self.managedObjectContext;
+    contentsViewController.pageManager = self.pageManager;
     
-    HistoryViewController *controller = (HistoryViewController*) navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
-    controller.pageViewController = pageViewController;
+    
+    // **************************************
+    // Configurate HISTORY
+    // **************************************
+    navigationController = (UINavigationController*)tabBarController.viewControllers[1];
+    HistoryViewController *historyViewController = (HistoryViewController*) navigationController.topViewController;
+    historyViewController.managedObjectContext = self.managedObjectContext;
+    historyViewController.pageManager = self.pageManager;
     
     return YES;
 }
@@ -138,6 +158,15 @@
 - (NSURL*)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (PageManager *)pageManager
+{
+    if (_pageManager == nil) {
+        _pageManager = [PageManager new];
+        _pageManager.managedObjectContext = self.managedObjectContext;
+    }
+    return _pageManager;
 }
 
 @end

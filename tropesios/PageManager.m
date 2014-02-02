@@ -22,9 +22,7 @@
 @interface PageManager ()
 
 @property (readonly, retain, nonatomic) NSURLSession *urlSession;
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic) Page *currentPage;
 @property (nonatomic) NSMutableArray *backHistory;
 @property (nonatomic) NSMutableArray *forwardHistory;
 @property (nonatomic) BOOL navigationInHistory;
@@ -36,7 +34,6 @@
 @implementation PageManager
 
 @synthesize urlSession = _urlSession;
-@synthesize managedObjectContext = _managedObjectContext;
 
 - (id)init
 {
@@ -139,6 +136,12 @@
         NSArray *folders = [hpple searchWithXPathQuery:@"//div[@class='folderlabel']"];
         
         // **************************************
+        // Cleaning old content
+        // **************************************
+        [Topic in:self.managedObjectContext deleteAllWithPredicate:@"page == %@", page];
+        [SubPage in:self.managedObjectContext deleteAllWithPredicate:@"page == %@", page];
+        
+        // **************************************
         // Storing entities
         // **************************************
         page.title = titleElement.text;
@@ -147,21 +150,24 @@
         content.html = contentsElement.raw;
         content.page = page;
         
+        int topicId = 0;
+        
         Topic *topic = [Topic newIn:self.managedObjectContext];
-        topic.topicId = @"0";
+        topic.topicId = [NSNumber numberWithInt:topicId];
         topic.title = @"Contents";
-        topic.content = content;
+        topic.page = page;
+        
+        topicId++;
         
         for (TFHppleElement *element in folders) {
             topic = [Topic newIn:self.managedObjectContext];
-            topic.topicId = @"0";
-            topic.title = element.text;
-            topic.content = content;
+            topic.topicId = [NSNumber numberWithInt:topicId];
+            topic.title = [element.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            topic.page = page;
+            
+            topicId++;
         }
         
-        // **************************************
-        // Notifing delegate
-        // **************************************
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self pageLoaded:page];
     }];
@@ -198,7 +204,6 @@
     // **************************************
     // Configurate navigation
     // **************************************
-    
     if (!self.navigationInHistory) {
         [self.forwardHistory removeAllObjects];
         
@@ -208,11 +213,6 @@
     }
     
     self.currentPage = page;
-    
-    // **************************************
-    // Notifying the delegate
-    // **************************************
-    [self.delegate pageLoaded:page];
 }
 
 - (NSURLSession*)urlSession
@@ -222,14 +222,6 @@
         _urlSession = [NSURLSession sessionWithConfiguration:urlSessionConfiguration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     }
     return _urlSession;
-}
-
-- (NSManagedObjectContext*)managedObjectContext
-{
-    if (_managedObjectContext == nil) {
-        _managedObjectContext = AppDelegate.managedObjectContext;
-    }
-    return _managedObjectContext;
 }
 
 @end

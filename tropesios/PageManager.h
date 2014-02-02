@@ -8,17 +8,12 @@
 
 #import "Page.h"
 
-@protocol PageManagerDelegate <NSObject>
-
-- (void)pageLoaded:(Page*)page;
-
-@end
-
 @interface PageManager : NSObject
 
-@property (strong, nonatomic) id<PageManagerDelegate> delegate;
 @property (readonly, nonatomic) BOOL canGoBack;
 @property (readonly, nonatomic) BOOL canGoForward;
+@property (strong, nonatomic) Page *currentPage;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (void)goToPageWithId:(NSString*)pageId;
 - (void)goToPage:(Page*)page;

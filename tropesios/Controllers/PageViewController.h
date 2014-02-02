@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 João Paulo Gonçalves. All rights reserved.
 //
 
-#import "Page.h"
+#import "PageManager.h"
 
 @interface PageViewController : UIViewController <UIWebViewDelegate, UISplitViewControllerDelegate>
 
@@ -16,10 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *spoilersButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textChangeButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *actionsButton;
-
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
-- (void)goToPage:(Page*)page;
+@property (strong, nonatomic) PageManager *pageManager;
 
 - (IBAction)toggleSpoilers:(id)sender;
 - (IBAction)goBack:(id)sender;

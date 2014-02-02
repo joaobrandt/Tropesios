@@ -16,5 +16,6 @@
 
 + (id)in:(NSManagedObjectContext*)managedObjectContext getOneWithId:(NSManagedObjectID*)objectId;
 + (id)in:(NSManagedObjectContext*)managedObjectContext getOneWithPredicate:(NSString*)predicate, ...;
++ (void)in:(NSManagedObjectContext *)managedObjectContext deleteAllWithPredicate:(NSString*)predicate, ...;
 
 @end

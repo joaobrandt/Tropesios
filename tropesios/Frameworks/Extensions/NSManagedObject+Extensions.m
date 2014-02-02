@@ -61,4 +61,21 @@
     return objects.count > 0 ? objects[0] : nil;
 }
 
++ (void)in:(NSManagedObjectContext *)managedObjectContext deleteAllWithPredicate:(NSString*)predicate, ...;
+{
+    va_list args;
+    va_start(args, predicate);
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(self)];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:predicate arguments:args];
+    
+    va_end(args);
+    
+    // TODO Handle error
+    NSArray* objects = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (NSManagedObject *object in objects) {
+        [managedObjectContext deleteObject:object];
+    }
+}
+
 @end
