@@ -160,6 +160,11 @@
         topicId++;
         
         for (TFHppleElement *element in folders) {
+        
+            if ([[element.attributes valueForKey:@"onclick"] isEqualToString:@"toggleAllFolders();"]) {
+                continue;
+            }
+            
             topic = [Topic newIn:self.managedObjectContext];
             topic.topicId = [NSNumber numberWithInt:topicId];
             topic.title = [element.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
