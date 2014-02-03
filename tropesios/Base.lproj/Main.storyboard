@@ -31,13 +31,13 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TrQ-DR-6pP"/>
-                                    <barButtonItem image="Spoilers" id="gqU-V6-eGy">
+                                    <barButtonItem image="Text Change" id="Atq-NN-dhY">
                                         <connections>
-                                            <action selector="toggleSpoilers:" destination="JEX-9P-axG" id="yc8-t2-qF8"/>
+                                            <segue destination="Mrc-TN-Tjh" kind="popover" popoverAnchorBarButtonItem="Atq-NN-dhY" id="hFO-ES-ppp">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="7eZ-lJ-dBF"/>
-                                    <barButtonItem image="Text Change" id="Atq-NN-dhY"/>
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="hAL-O3-xpu"/>
                                     <barButtonItem image="Share" id="Tkb-Ht-ada"/>
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CKH-9Z-Aq5"/>
@@ -80,7 +80,6 @@
                         <outlet property="actionsButton" destination="Tkb-Ht-ada" id="feK-VN-ncA"/>
                         <outlet property="backButton" destination="ftp-IY-Ofn" id="pQ2-Kz-Ofg"/>
                         <outlet property="forwardButton" destination="ajc-2Y-H2y" id="bCa-Zk-3wU"/>
-                        <outlet property="spoilersButton" destination="gqU-V6-eGy" id="Ddz-vs-GsW"/>
                         <outlet property="textChangeButton" destination="Atq-NN-dhY" id="h8q-7O-Wdd"/>
                         <outlet property="toolbar" destination="Qyk-Fh-JBc" id="n10-bB-KV1"/>
                         <outlet property="webView" destination="YTb-Ox-g3u" id="opS-Ku-EzJ"/>
@@ -89,6 +88,106 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="556" y="250"/>
+        </scene>
+        <!--Page Preferences View Controller-->
+        <scene sceneID="Pja-gC-nMO">
+            <objects>
+                <tableViewController id="Mrc-TN-Tjh" customClass="PagePreferencesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8om-L1-ouk">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="176"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <sections>
+                            <tableViewSection headerTitle="Spoilers" id="Cz7-GN-sgT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PZW-fL-a9k">
+                                        <rect key="frame" x="0.0" y="22" width="400" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PZW-fL-a9k" id="WR5-mz-Fy1">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show All Spoilers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQD-aZ-Ra6">
+                                                    <rect key="frame" x="20" y="11" width="166" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iRW-YJ-Xdi">
+                                                    <rect key="frame" x="331" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="updateShowAllSpoilers:" destination="Mrc-TN-Tjh" eventType="valueChanged" id="dwP-Vt-cRL"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Adjust Font" id="1G5-Vy-XH8">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DiL-a4-e5k">
+                                        <rect key="frame" x="0.0" y="88" width="400" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DiL-a4-e5k" id="7eV-YA-dnX">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="2" minimumValueImage="Text-Decrease" maximumValueImage="Text-Increase" translatesAutoresizingMaskIntoConstraints="NO" id="eY0-jb-iIK">
+                                                    <rect key="frame" x="18" y="5" width="364" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="updateFontSize:" destination="Mrc-TN-Tjh" eventType="valueChanged" id="nO4-qX-wfB"/>
+                                                    </connections>
+                                                </slider>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cWp-Qx-faz">
+                                        <rect key="frame" x="0.0" y="132" width="400" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cWp-Qx-faz" id="aJe-VW-Acc">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Serif" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auO-xz-CYg">
+                                                    <rect key="frame" x="20" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6IC-Nv-01N">
+                                                    <rect key="frame" x="331" y="6" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="updateFontSerif:" destination="Mrc-TN-Tjh" eventType="valueChanged" id="EU0-iE-mAa"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Mrc-TN-Tjh" id="i3r-dV-i5H"/>
+                            <outlet property="delegate" destination="Mrc-TN-Tjh" id="aGx-D7-g5O"/>
+                        </connections>
+                    </tableView>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="fontSerifSwitch" destination="6IC-Nv-01N" id="xOw-52-LEZ"/>
+                        <outlet property="fontSizeSlider" destination="eY0-jb-iIK" id="tG7-vG-PMG"/>
+                        <outlet property="showAllSpoilersSwitch" destination="iRW-YJ-Xdi" id="zda-Kp-CcR"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q0W-Wk-lou" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="546"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -247,12 +346,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="25" height="25"/>
+        <image name="Back" width="22" height="22"/>
         <image name="Contents" width="25" height="25"/>
         <image name="Forward" width="25" height="25"/>
         <image name="Share" width="25" height="25"/>
-        <image name="Spoilers" width="25" height="25"/>
         <image name="Text Change" width="25" height="25"/>
+        <image name="Text-Decrease" width="22" height="22"/>
+        <image name="Text-Increase" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>

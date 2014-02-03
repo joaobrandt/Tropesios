@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *spoilersButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textChangeButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *actionsButton;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -22,7 +21,6 @@
 
 - (void)scrollToTopic:(Topic*)topic;
 
-- (IBAction)toggleSpoilers:(id)sender;
 - (IBAction)goBack:(id)sender;
 - (IBAction)goForward:(id)sender;
 

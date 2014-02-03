@@ -4,6 +4,10 @@ body {
     font-weight: lighter;
 }
 
+body.font-serif {
+    font-family: serif;   
+}
+
 li {
     margin-top: 6px;
     padding-bottom: 2px;

@@ -12,6 +12,8 @@
 		6C217816189E91F900300B09 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C217815189E91F900300B09 /* Page.m */; };
 		6C21781C189E950E00300B09 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C21781B189E950E00300B09 /* Topic.m */; };
 		6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C49E752188DDBC5000DEE7C /* Tropesios.xcdatamodeld */; };
+		6C5EB39D18A045F800C9D181 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39C18A045F800C9D181 /* Constants.m */; };
+		6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */; };
 		6C7F25CA1890898A004E93C3 /* NSManagedObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F25C91890898A004E93C3 /* NSManagedObject+Extensions.m */; };
 		6C7F25D01890A6E4004E93C3 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F25CF1890A6E4004E93C3 /* NSDate+Extensions.m */; };
 		6CACCD8A1895812A00C2CCD1 /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CACCD891895812A00C2CCD1 /* ContentsViewController.m */; };
@@ -46,6 +48,10 @@
 		6C21781A189E950E00300B09 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
 		6C21781B189E950E00300B09 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		6C49E753188DDBC5000DEE7C /* Tropesios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tropesios.xcdatamodel; sourceTree = "<group>"; };
+		6C5EB39B18A045F800C9D181 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6C5EB39C18A045F800C9D181 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		6C5EB39E18A048D600C9D181 /* PagePreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagePreferencesViewController.h; sourceTree = "<group>"; };
+		6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagePreferencesViewController.m; sourceTree = "<group>"; };
 		6C7F25C81890898A004E93C3 /* NSManagedObject+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Extensions.h"; sourceTree = "<group>"; };
 		6C7F25C91890898A004E93C3 /* NSManagedObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Extensions.m"; sourceTree = "<group>"; };
 		6C7F25CE1890A6E4004E93C3 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extensions.h"; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 				6CC11FDD188C2D090005F90F /* HistoryViewController.m */,
 				6CCB8248187C3EB500BE2617 /* PageViewController.h */,
 				6CCB8249187C3EB500BE2617 /* PageViewController.m */,
+				6C5EB39E18A048D600C9D181 /* PagePreferencesViewController.h */,
+				6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */,
 			);
 			name = Controllers;
 			path = Tropesios/Controllers;
@@ -232,6 +240,8 @@
 				6CC548FE187ED3A9006B7C28 /* Tropesios-Info.plist */,
 				6CCB8239187C3EB500BE2617 /* main.m */,
 				6CCB823B187C3EB500BE2617 /* Tropesios-Prefix.pch */,
+				6C5EB39B18A045F800C9D181 /* Constants.h */,
+				6C5EB39C18A045F800C9D181 /* Constants.m */,
 			);
 			name = "Supporting Files";
 			path = "Tropesios/Supporting Files";
@@ -336,7 +346,9 @@
 				6CCB823A187C3EB500BE2617 /* main.m in Sources */,
 				6CC548FD187ED229006B7C28 /* XPathQuery.m in Sources */,
 				6C217813189E91F800300B09 /* Content.m in Sources */,
+				6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */,
 				6CC548FC187ED229006B7C28 /* TFHppleElement.m in Sources */,
+				6C5EB39D18A045F800C9D181 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

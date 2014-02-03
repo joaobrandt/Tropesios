@@ -20,6 +20,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // **************************************
+    // Registering preferences
+    // **************************************
+    [[NSUserDefaults standardUserDefaults] registerDefaults:
+    @{
+        PREFERENCE_FONT_SIZE: @1.0f,
+        PREFERENCE_FONT_SERIF: @NO,
+        PREFERENCE_SHOW_SPOILERS: @NO
+    }];
+    
     [NSFetchedResultsController deleteCacheWithName:@"MainCache"];
     
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -28,13 +38,13 @@
     UITabBarController *tabBarController = (UITabBarController*) [splitViewController.viewControllers firstObject];
     
     // **************************************
-    // Configurate PAGE
+    // Configurating PAGE
     // **************************************
     pageViewController.pageManager = self.pageManager;
     splitViewController.delegate = pageViewController;
 
     // **************************************
-    // Configurate CONTENTS
+    // Configurating CONTENTS
     // **************************************
     UINavigationController *navigationController = (UINavigationController*)tabBarController.viewControllers[0];
     ContentsViewController *contentsViewController = (ContentsViewController*) navigationController.topViewController;
@@ -43,7 +53,7 @@
     contentsViewController.pageViewController = pageViewController;
     
     // **************************************
-    // Configurate HISTORY
+    // Configurating HISTORY
     // **************************************
     navigationController = (UINavigationController*)tabBarController.viewControllers[1];
     HistoryViewController *historyViewController = (HistoryViewController*) navigationController.topViewController;

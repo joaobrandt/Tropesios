@@ -2,12 +2,12 @@ $(document).ready(function() {
 	$("hr").remove();
 	$("div[onclick='toggleAllFolders();']").remove();
 
-	$(".folderlabel").each(function(index, item) {
+	$(".folderlabel").each(function(index, item) { 
 		$(this).replaceWith("<h3 id='topic" + index + "'>" + $(this).text() + "</h3>");
 	});
 
 	$(".spoiler").click(function() {
-		$(this).toggleClass("spoiler-visible");
+		$(this).addClass("spoiler-visible");
 	});
 
 	$(".twikilink").each(function() {
@@ -16,13 +16,17 @@ $(document).ready(function() {
 	});
 });
 
-function showAllSpoilers() {
-	$(".spoiler").addClass("spoiler-visible");
-};
+function showSpoilers(show) {
+	$(".spoiler").toggleClass("spoiler-visible", show);
+}
 
-function hideAllSpoilers() {
-	$(".spoiler").removeClass("spoiler-visible");
-};
+function fontSize(size) {
+	$("body").css("font-size", (size * 100) + "%");
+}
+
+function fontSerif(serif) {
+	$("body").toggleClass("font-serif", serif);
+}
 
 function scrollToTopic(topicId) {
 	window.location.hash = topicId == -1 ? "" : "#topic" + topicId;

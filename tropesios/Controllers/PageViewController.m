@@ -14,7 +14,6 @@
 
 @interface PageViewController ()
 
-@property (nonatomic) BOOL spoilersVisible;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
 @end
@@ -25,18 +24,15 @@
 {
     [super viewDidLoad];
     
-    self.spoilersVisible = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
     [self.pageManager goToPageWithId:@"Main/AbortedDeclarationOfLove"];
 }
 
-- (IBAction)toggleSpoilers:(id)sender
+- (void)dealloc
 {
-    NSString *command = self.spoilersVisible ? @"hideAllSpoilers();" : @"showAllSpoilers();";
-    [self.webView stringByEvaluatingJavaScriptFromString:command];
-    self.spoilersVisible = !self.spoilersVisible;
-    self.spoilersButton.tintColor = self.spoilersVisible ? [UIColor redColor] : [UIColor blackColor];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (IBAction)goBack:(id)sender
@@ -64,6 +60,20 @@
         NSString *command = [NSString stringWithFormat:@"scrollToTopic(%@);", topic.topicId];
         [self.webView stringByEvaluatingJavaScriptFromString:command];
     }
+}
+
+#pragma mark - NSUserDefaultsDidChangeNotification
+
+- (void)userDefaultsDidChanged:(NSNotification *)notification
+{
+    NSUserDefaults *userDefaults = notification.object;
+    
+    NSString *command = [NSString stringWithFormat:@"showSpoilers(%d);fontSize(%f);fontSerif(%d);",
+        [userDefaults boolForKey:PREFERENCE_SHOW_SPOILERS],
+        [userDefaults floatForKey:PREFERENCE_FONT_SIZE],
+        [userDefaults boolForKey:PREFERENCE_FONT_SERIF]];
+
+    [self.webView stringByEvaluatingJavaScriptFromString:command];
 }
 
 #pragma mark - Page Manager Observer
