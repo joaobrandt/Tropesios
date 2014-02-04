@@ -12,13 +12,17 @@
 #import "Content.h"
 #import "Topic.h"
 
-@interface PageViewController ()
+@interface PageViewController () <UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (strong, nonatomic) UIPopoverController *pagePreferencesPopoverController;
+@property (strong, nonatomic) NSUserDefaults *userDefaults;
 
 @end
 
 @implementation PageViewController
+
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
@@ -34,6 +38,21 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return ![identifier isEqualToString:@"showPagePreferences"] || self.pagePreferencesPopoverController == nil;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showPagePreferences"]) {
+        self.pagePreferencesPopoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
+        self.pagePreferencesPopoverController.delegate = self;
+    }
+}
+
+#pragma mark - Actions
 
 - (IBAction)goBack:(id)sender
 {
@@ -52,6 +71,14 @@
     }
 }
 
+- (NSString *)createPagePreferencesCommand:(NSUserDefaults *)userDefaults
+{
+    return [NSString stringWithFormat:@"showSpoilers(%d);fontSize(%f);fontSerif(%d);",
+                         [userDefaults boolForKey:PREFERENCE_SHOW_SPOILERS],
+                         [userDefaults floatForKey:PREFERENCE_FONT_SIZE],
+                         [userDefaults boolForKey:PREFERENCE_FONT_SERIF]];
+}
+
 - (void)scrollToTopic:(Topic *)topic
 {
     if ([topic.page isEqual:self.pageManager.currentPage]) {
@@ -67,13 +94,7 @@
 - (void)userDefaultsDidChanged:(NSNotification *)notification
 {
     NSUserDefaults *userDefaults = notification.object;
-    
-    NSString *command = [NSString stringWithFormat:@"showSpoilers(%d);fontSize(%f);fontSerif(%d);",
-        [userDefaults boolForKey:PREFERENCE_SHOW_SPOILERS],
-        [userDefaults floatForKey:PREFERENCE_FONT_SIZE],
-        [userDefaults boolForKey:PREFERENCE_FONT_SERIF]];
-
-    [self.webView stringByEvaluatingJavaScriptFromString:command];
+    [self.webView stringByEvaluatingJavaScriptFromString:[self createPagePreferencesCommand:userDefaults]];
 }
 
 #pragma mark - Page Manager Observer
@@ -97,9 +118,13 @@
         "    <h1>%@</h1>"
         "    %@"
         "  </body>"
+        "  <script type='text/javascript'>Zepto(function($){%@})</script>"
         "</html>";
         
-        [self.webView loadHTMLString:[NSString stringWithFormat:html, self.pageManager.currentPage.title, self.pageManager.currentPage.content.html] baseURL:baseURL];
+        html = [NSString stringWithFormat:html, self.pageManager.currentPage.title, self.pageManager.currentPage.content.html, [self createPagePreferencesCommand:[NSUserDefaults standardUserDefaults]]];
+        
+        [self.webView loadHTMLString:html baseURL:baseURL];
+        
         self.backButton.enabled = [self.pageManager canGoBack];
         self.forwardButton.enabled = [self.pageManager canGoForward];
         
@@ -118,6 +143,15 @@
         [self.pageManager goToPageWithId:request.URL.resourceSpecifier];
         
     return NO;
+}
+
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    if (self.pagePreferencesPopoverController == popoverController) {
+        self.pagePreferencesPopoverController = nil;
+    }
 }
 
 #pragma mark - UISplitViewControllerDelegate
