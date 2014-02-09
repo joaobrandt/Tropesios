@@ -71,7 +71,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -86,6 +86,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [self.pageManager saveHistory];
     [self saveContext];
 }
 

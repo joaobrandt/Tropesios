@@ -31,7 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
-    [self.pageManager goToPageWithId:@"Main/AbortedDeclarationOfLove"];
+    [self.pageManager loadHistory];
 }
 
 - (void)dealloc

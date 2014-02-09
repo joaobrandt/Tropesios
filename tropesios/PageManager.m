@@ -220,6 +220,46 @@
     self.currentPage = page;
 }
 
+- (void)loadHistory
+{
+    NSString *directoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *filePath = [directoryPath stringByAppendingPathComponent:@"history.out"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    
+        [self.backHistory addObjectsFromArray:[NSArray arrayWithContentsOfFile:filePath]];
+        
+        if (self.backHistory.count > 0) {
+            NSString *lastVisited = [self.backHistory lastObject];
+            [self.backHistory removeLastObject];
+            [self goToPageWithId:lastVisited];
+        }
+        else {
+            // TODO
+            [self goToPageWithId:@"Main/AbortedDeclarationOfLove"];
+
+        }
+    }
+    
+    else {
+        // TODO
+        [self goToPageWithId:@"Main/AbortedDeclarationOfLove"];
+    }
+}
+
+- (void)saveHistory
+{
+    NSMutableArray *history = [NSMutableArray arrayWithArray:self.backHistory];
+    
+    if (self.currentPage != nil) {
+        [history addObject:self.currentPage.pageId];
+    }
+    
+    NSString *directoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *filePath = [directoryPath stringByAppendingPathComponent:@"history.out"];
+    [history writeToFile:filePath atomically:YES];
+}
+
 - (NSURLSession*)urlSession
 {
     if (_urlSession == nil) {

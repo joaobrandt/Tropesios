@@ -20,4 +20,7 @@
 - (void)goToForwardPage;
 - (void)goToBackPage;
 
+- (void)loadHistory;
+- (void)saveHistory;
+
 @end
