@@ -11,12 +11,15 @@
 #import "Page.h"
 #import "Content.h"
 #import "Topic.h"
+#import "SearchEntry.h"
 
-@interface PageViewController () <UIPopoverControllerDelegate>
+@interface PageViewController () <UIPopoverControllerDelegate, PageSearchDelegate>
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIPopoverController *pagePreferencesPopoverController;
 @property (strong, nonatomic) NSUserDefaults *userDefaults;
+
+- (void)search;
 
 @end
 
@@ -32,6 +35,7 @@
     
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
     [self.pageManager loadHistory];
+    self.pageManager.searchDelegate = self;
 }
 
 - (void)dealloc
@@ -52,6 +56,13 @@
     }
 }
 
+- (void)resultsFound:(NSArray *)results
+{
+    for (SearchEntry *entry in results) {
+        NSLog(@"%@ -> %@", entry.pageId, entry.text);
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)goBack:(id)sender
@@ -62,6 +73,17 @@
 - (IBAction)goForward:(id)sender
 {
     [self.pageManager goToForwardPage];
+}
+
+- (IBAction)searchTextChanged:(id)sender
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(search) object:nil];
+    [self performSelector:@selector(search) withObject:nil afterDelay:0.5];
+}
+
+- (void)search
+{
+    [self.pageManager search:self.searchText.text];
 }
 
 - (void)closeMasterPopover

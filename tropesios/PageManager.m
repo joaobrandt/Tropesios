@@ -13,6 +13,7 @@
 #import "Content.h"
 #import "SubPage.h"
 #import "Topic.h"
+#import "SearchEntry.h"
 
 #import "TFHpple.h"
 #import "TFHppleElement.h"
@@ -258,6 +259,49 @@
     NSString *directoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     NSString *filePath = [directoryPath stringByAppendingPathComponent:@"history.out"];
     [history writeToFile:filePath atomically:YES];
+}
+
+- (void)search:(NSString*)query;
+{
+    // **************************************
+    // Loading remote content;
+    // **************************************
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/cse?cx=partner-pub-6610802604051523%%3Aamzitfn8e7v&cof=FORID%%3A10&q=%@", query]];
+    
+    NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error != nil) {
+            // TODO Handle
+            return;
+        }
+        
+        TFHpple *hpple = [TFHpple hppleWithHTMLData:data encoding:@"ISO-8859-1"];
+        
+        NSArray *elements = [hpple searchWithXPathQuery:@"//a[@class='l']"];
+        NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:elements.count];
+        
+        for (TFHppleElement *element in elements) {
+            
+            SearchEntry *entry = [SearchEntry new];
+            
+            entry.pageId = [element.attributes objectForKey:@"href"];
+            if ([entry.pageId hasPrefix:TV_TROPES_URL_PREFIX]) {
+                entry.pageId = [entry.pageId substringFromIndex:[TV_TROPES_URL_PREFIX length]];
+            }
+            
+            entry.text = @"";
+            for (TFHppleElement *child in element.children) {
+                entry.text = [entry.text stringByAppendingString: (child.text != nil ? child.text : child.content) ];
+            }
+            
+            [entries addObject:entry];
+        }
+        
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [self.searchDelegate resultsFound:entries];
+    }];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [task resume];
 }
 
 - (NSURLSession*)urlSession

@@ -16,6 +16,8 @@
 		6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */; };
 		6C7F25CA1890898A004E93C3 /* NSManagedObject+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F25C91890898A004E93C3 /* NSManagedObject+Extensions.m */; };
 		6C7F25D01890A6E4004E93C3 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7F25CF1890A6E4004E93C3 /* NSDate+Extensions.m */; };
+		6CAB586518A994ED00FEA1C0 /* SearchEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB586418A994ED00FEA1C0 /* SearchEntry.m */; };
+		6CAB586818A99B1400FEA1C0 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB586718A99B1400FEA1C0 /* SearchResultsViewController.m */; };
 		6CACCD8A1895812A00C2CCD1 /* ContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CACCD891895812A00C2CCD1 /* ContentsViewController.m */; };
 		6CAE0099187E1666004990FB /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAE0097187E1650004990FB /* libxml2.2.dylib */; };
 		6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB0B9F618830B7D0071D1CA /* PageManager.m */; };
@@ -56,6 +58,10 @@
 		6C7F25C91890898A004E93C3 /* NSManagedObject+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Extensions.m"; sourceTree = "<group>"; };
 		6C7F25CE1890A6E4004E93C3 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extensions.h"; sourceTree = "<group>"; };
 		6C7F25CF1890A6E4004E93C3 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
+		6CAB586318A994EC00FEA1C0 /* SearchEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEntry.h; sourceTree = "<group>"; };
+		6CAB586418A994ED00FEA1C0 /* SearchEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEntry.m; sourceTree = "<group>"; };
+		6CAB586618A99B1400FEA1C0 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		6CAB586718A99B1400FEA1C0 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		6CACCD881895812A00C2CCD1 /* ContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentsViewController.h; sourceTree = "<group>"; };
 		6CACCD891895812A00C2CCD1 /* ContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentsViewController.m; sourceTree = "<group>"; };
 		6CAE0097187E1650004990FB /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -122,6 +128,8 @@
 				6C21780F189E91F800300B09 /* SubPage.m */,
 				6CE9E95218943BE7005DAD00 /* History.h */,
 				6CE9E95318943BE7005DAD00 /* History.m */,
+				6CAB586318A994EC00FEA1C0 /* SearchEntry.h */,
+				6CAB586418A994ED00FEA1C0 /* SearchEntry.m */,
 			);
 			name = Entities;
 			path = Tropesios/Entities;
@@ -138,6 +146,8 @@
 				6CCB8249187C3EB500BE2617 /* PageViewController.m */,
 				6C5EB39E18A048D600C9D181 /* PagePreferencesViewController.h */,
 				6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */,
+				6CAB586618A99B1400FEA1C0 /* SearchResultsViewController.h */,
+				6CAB586718A99B1400FEA1C0 /* SearchResultsViewController.m */,
 			);
 			name = Controllers;
 			path = Tropesios/Controllers;
@@ -334,10 +344,12 @@
 				6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */,
 				6CACCD8A1895812A00C2CCD1 /* ContentsViewController.m in Sources */,
 				6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */,
+				6CAB586518A994ED00FEA1C0 /* SearchEntry.m in Sources */,
 				6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */,
 				6C21781C189E950E00300B09 /* Topic.m in Sources */,
 				6CE9E95418943BE7005DAD00 /* History.m in Sources */,
 				6C217810189E91F800300B09 /* SubPage.m in Sources */,
+				6CAB586818A99B1400FEA1C0 /* SearchResultsViewController.m in Sources */,
 				6CC11FDE188C2D090005F90F /* HistoryViewController.m in Sources */,
 				6C7F25CA1890898A004E93C3 /* NSManagedObject+Extensions.m in Sources */,
 				6C7F25D01890A6E4004E93C3 /* NSDate+Extensions.m in Sources */,

@@ -42,11 +42,17 @@
                                     <barButtonItem image="Share" id="Tkb-Ht-ada"/>
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CKH-9Z-Aq5"/>
                                     <barButtonItem style="plain" id="doU-ze-bCb">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="PVZ-Fy-1nW">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search TV Tropes" minimumFontSize="17" clearButtonMode="whileEditing" id="PVZ-Fy-1nW">
                                             <rect key="frame" x="487" y="7" width="200" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="searchTextChanged:" destination="JEX-9P-axG" eventType="editingChanged" id="UFQ-0X-kpg"/>
+                                                <segue destination="q6y-mg-VbV" kind="popover" identifier="showSearchResults" popoverAnchorView="PVZ-Fy-1nW" id="oh3-Aw-Pac">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
+                                            </connections>
                                         </textField>
                                     </barButtonItem>
                                 </items>
@@ -80,6 +86,7 @@
                         <outlet property="actionsButton" destination="Tkb-Ht-ada" id="feK-VN-ncA"/>
                         <outlet property="backButton" destination="ftp-IY-Ofn" id="pQ2-Kz-Ofg"/>
                         <outlet property="forwardButton" destination="ajc-2Y-H2y" id="bCa-Zk-3wU"/>
+                        <outlet property="searchText" destination="PVZ-Fy-1nW" id="DZv-il-MEX"/>
                         <outlet property="textChangeButton" destination="Atq-NN-dhY" id="h8q-7O-Wdd"/>
                         <outlet property="toolbar" destination="Qyk-Fh-JBc" id="n10-bB-KV1"/>
                         <outlet property="webView" destination="YTb-Ox-g3u" id="opS-Ku-EzJ"/>
@@ -88,6 +95,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="556" y="250"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="2b4-jk-w8C">
+            <objects>
+                <tableViewController id="q6y-mg-VbV" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="06q-ER-dF4">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" textLabel="aH6-4g-wkH" style="IBUITableViewCellStyleDefault" id="bkg-wU-whT">
+                                <rect key="frame" x="0.0" y="22" width="400" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bkg-wU-whT" id="QHs-RY-hdX">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH6-4g-wkH">
+                                            <rect key="frame" x="15" y="0.0" width="370" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="q6y-mg-VbV" id="9ag-Xn-M9d"/>
+                            <outlet property="delegate" destination="q6y-mg-VbV" id="IGh-xB-A4Z"/>
+                        </connections>
+                    </tableView>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YBx-wo-Q4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1502" y="250"/>
         </scene>
         <!--Page Preferences View Controller-->
         <scene sceneID="Pja-gC-nMO">
@@ -187,7 +234,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0W-Wk-lou" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="546"/>
+            <point key="canvasLocation" x="1527" y="1032"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

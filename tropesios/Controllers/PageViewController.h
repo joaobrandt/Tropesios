@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *forwardButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *textChangeButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *actionsButton;
+@property (weak, nonatomic) IBOutlet UITextField *searchText;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (strong, nonatomic) PageManager *pageManager;
@@ -23,5 +24,6 @@
 
 - (IBAction)goBack:(id)sender;
 - (IBAction)goForward:(id)sender;
+- (IBAction)searchTextChanged:(id)sender;
 
 @end
