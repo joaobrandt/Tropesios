@@ -33,11 +33,16 @@
         <attribute name="topicId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Page" inverseName="topics" inverseEntity="Page" syncable="YES"/>
     </entity>
+    <entity name="ToRead" representedClassName="ToRead" syncable="YES">
+        <attribute name="pageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Content" positionX="0" positionY="0" width="0" height="0"/>
         <element name="History" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Page" positionX="0" positionY="0" width="0" height="0"/>
         <element name="SubPage" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Topic" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ToRead" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

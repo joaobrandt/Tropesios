@@ -8,8 +8,9 @@
 
 #import "TropesiosAppDelegate.h"
 #import "PageViewController.h"
-#import "HistoryViewController.h"
 #import "ContentsViewController.h"
+#import "HistoryViewController.h"
+#import "ToReadViewController.h"
 
 @implementation TropesiosAppDelegate
 
@@ -59,6 +60,14 @@
     HistoryViewController *historyViewController = (HistoryViewController*) navigationController.topViewController;
     historyViewController.managedObjectContext = self.managedObjectContext;
     historyViewController.pageManager = self.pageManager;
+    
+    // **************************************
+    // Configurating TO READ
+    // **************************************
+    navigationController = (UINavigationController*)tabBarController.viewControllers[1];
+    ToReadViewController *toReadViewController = (ToReadViewController*) navigationController.topViewController;
+    toReadViewController.managedObjectContext = self.managedObjectContext;
+    toReadViewController.pageManager = self.pageManager;
     
     return YES;
 }
