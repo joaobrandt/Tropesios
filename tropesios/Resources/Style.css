@@ -2,6 +2,7 @@ body {
     background-color: #F6F6F6;
     font-family: sans-serif;
     font-weight: lighter;
+    -webkit-touch-callout: none;
 }
 
 body.font-serif {

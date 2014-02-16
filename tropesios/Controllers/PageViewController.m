@@ -165,12 +165,17 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if (navigationType == UIWebViewNavigationTypeOther)
+    if (navigationType == UIWebViewNavigationTypeOther) {
         return YES;
+    }
     
-    if ([request.URL.scheme isEqualToString:@"tvtropeswiki"])
+    if ([request.URL.scheme isEqualToString:TV_TROPES_SCHEME]) {
         [self.pageManager goToPageWithId:request.URL.resourceSpecifier];
-        
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:request.URL];
+    }
+    
     return NO;
 }
 
