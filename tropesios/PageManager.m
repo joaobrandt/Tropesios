@@ -293,7 +293,10 @@
                 entry.text = [entry.text stringByAppendingString: (child.text != nil ? child.text : child.content) ];
             }
             
-            [entries addObject:entry];
+            if ([entry.text hasSuffix:TV_TROPES_TITLE_SUFFIX]) {
+                entry.text = [entry.text substringToIndex:entry.text.length - TV_TROPES_TITLE_SUFFIX.length];
+                [entries addObject:entry];
+            }
         }
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

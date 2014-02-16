@@ -7,19 +7,20 @@
 //
 
 #import "PageViewController.h"
+#import "SearchViewController.h"
 
 #import "Page.h"
 #import "Content.h"
 #import "Topic.h"
 #import "SearchEntry.h"
 
-@interface PageViewController () <UIPopoverControllerDelegate, PageSearchDelegate>
+@interface PageViewController () <UIPopoverControllerDelegate>
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIPopoverController *pagePreferencesPopoverController;
-@property (strong, nonatomic) NSUserDefaults *userDefaults;
+@property (strong, nonatomic) UIPopoverController *searchPopoverController;
 
-- (void)search;
+@property (strong, nonatomic) NSUserDefaults *userDefaults;
 
 @end
 
@@ -35,7 +36,6 @@
     
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
     [self.pageManager loadHistory];
-    self.pageManager.searchDelegate = self;
 }
 
 - (void)dealloc
@@ -45,7 +45,15 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    return ![identifier isEqualToString:@"showPagePreferences"] || self.pagePreferencesPopoverController == nil;
+    if ([identifier isEqualToString:@"showPagePreferences"]) {
+        return self.pagePreferencesPopoverController == nil;
+    }
+    
+    if ([identifier isEqualToString:@"showSearch"]) {
+        return self.searchPopoverController == nil;
+    }
+    
+    return YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -54,12 +62,15 @@
         self.pagePreferencesPopoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
         self.pagePreferencesPopoverController.delegate = self;
     }
-}
-
-- (void)resultsFound:(NSArray *)results
-{
-    for (SearchEntry *entry in results) {
-        NSLog(@"%@ -> %@", entry.pageId, entry.text);
+    
+    if ([segue.identifier isEqualToString:@"showSearch"]) {
+        self.searchPopoverController = ((UIStoryboardPopoverSegue *)segue).popoverController;
+        self.searchPopoverController.delegate = self;
+        
+        SearchViewController *contentViewController = (SearchViewController *) self.searchPopoverController.contentViewController;
+        contentViewController.searchTextField = self.searchTextField;
+        contentViewController.pageManager = self.pageManager;
+        contentViewController.popover = self.searchPopoverController;
     }
 }
 
@@ -73,17 +84,6 @@
 - (IBAction)goForward:(id)sender
 {
     [self.pageManager goToForwardPage];
-}
-
-- (IBAction)searchTextChanged:(id)sender
-{
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(search) object:nil];
-    [self performSelector:@selector(search) withObject:nil afterDelay:0.5];
-}
-
-- (void)search
-{
-    [self.pageManager search:self.searchText.text];
 }
 
 - (void)closeMasterPopover
@@ -154,6 +154,13 @@
     }
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self performSegueWithIdentifier:@"showSearch" sender:nil];
+}
+
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -173,6 +180,10 @@
 {
     if (self.pagePreferencesPopoverController == popoverController) {
         self.pagePreferencesPopoverController = nil;
+    }
+    
+    if (self.searchPopoverController == popoverController) {
+        self.searchPopoverController = nil;
     }
 }
 
