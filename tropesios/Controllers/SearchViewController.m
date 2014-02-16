@@ -95,7 +95,6 @@
     SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
     [self.pageManager goToPageWithId:entry.pageId];
     [self.popover dismissPopoverAnimated:YES];
-    [self.searchTextField resignFirstResponder];
 }
 
 @end

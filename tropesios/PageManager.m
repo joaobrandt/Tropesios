@@ -119,7 +119,7 @@
     // **************************************
     // Loading remote content;
     // **************************************
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://tvtropes.org/pmwiki/pmwiki.php/%@", page.pageId]];
+    NSURL *url = [NSURL URLWithString:[TV_TROPES_URL stringByAppendingString:page.pageId]];
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
@@ -266,7 +266,9 @@
     // **************************************
     // Loading remote content;
     // **************************************
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/cse?cx=partner-pub-6610802604051523%%3Aamzitfn8e7v&cof=FORID%%3A10&q=%@", query]];
+    query = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    NSURL *url = [NSURL URLWithString:[TV_TROPES_URL_SEARCH stringByAppendingString:query]];
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
@@ -284,8 +286,8 @@
             SearchEntry *entry = [SearchEntry new];
             
             entry.pageId = [element.attributes objectForKey:@"href"];
-            if ([entry.pageId hasPrefix:TV_TROPES_URL_PREFIX]) {
-                entry.pageId = [entry.pageId substringFromIndex:[TV_TROPES_URL_PREFIX length]];
+            if ([entry.pageId hasPrefix:TV_TROPES_URL]) {
+                entry.pageId = [entry.pageId substringFromIndex:[TV_TROPES_URL length]];
             }
             
             entry.text = @"";

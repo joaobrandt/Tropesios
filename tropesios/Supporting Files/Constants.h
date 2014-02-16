@@ -12,5 +12,6 @@ extern NSString *const PREFERENCE_FONT_SIZE;
 extern NSString *const PREFERENCE_FONT_SERIF;
 extern NSString *const PREFERENCE_SHOW_SPOILERS;
 
-extern NSString *const TV_TROPES_URL_PREFIX;
+extern NSString *const TV_TROPES_URL;
+extern NSString *const TV_TROPES_URL_SEARCH;
 extern NSString *const TV_TROPES_TITLE_SUFFIX;

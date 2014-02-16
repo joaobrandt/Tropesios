@@ -184,6 +184,8 @@
     
     if (self.searchPopoverController == popoverController) {
         self.searchPopoverController = nil;
+        
+        [self.searchTextField resignFirstResponder];
     }
 }
 
