@@ -182,7 +182,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="2" continuous="NO" minimumValueImage="Text-Decrease" maximumValueImage="Text-Increase" translatesAutoresizingMaskIntoConstraints="NO" id="eY0-jb-iIK">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="2" minimumValueImage="Text-Decrease" maximumValueImage="Text-Increase" translatesAutoresizingMaskIntoConstraints="NO" id="eY0-jb-iIK">
                                                     <rect key="frame" x="18" y="5" width="364" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
