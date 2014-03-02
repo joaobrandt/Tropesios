@@ -29,15 +29,17 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"pageManager"]) {
-        self.pageManager.searchDelegate = self;
-        
         [self removeObserver:self forKeyPath:@"pageManager"];
+        
+        self.pageManager.searchDelegate = self;
+        self.searchResults = self.pageManager.lastSearchResults;
+        [self.tableView reloadData];
     }
     
     if ([keyPath isEqualToString:@"searchTextField"]) {
-        [self.searchTextField addTarget:self action:@selector(searchTextFieldChanged:) forControlEvents:UIControlEventEditingChanged];
-        
         [self removeObserver:self forKeyPath:@"searchTextField"];
+        
+        [self.searchTextField addTarget:self action:@selector(searchTextFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     }
 }
 
@@ -79,6 +81,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.textLabel.text = entry.text;
+    cell.detailTextLabel.text = entry.snippet;
     
     return cell;
 }
@@ -94,6 +97,8 @@
 {
     SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
     [self.pageManager goToPageWithId:entry.pageId];
+    
+    [self.searchTextField resignFirstResponder];
     [self.popover dismissPopoverAnimated:YES];
 }
 

@@ -10,5 +10,6 @@
 
 @property (nonatomic) NSString *pageId;
 @property (nonatomic) NSString *text;
+@property (nonatomic) NSString *snippet;
 
 @end

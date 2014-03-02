@@ -20,6 +20,8 @@
 @property (readonly, nonatomic) BOOL canGoForward;
 @property (strong, nonatomic) Page *currentPage;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSString *lastSearchTerm;
+@property (strong, nonatomic) NSArray *lastSearchResults;
 
 @property (strong, nonatomic) id<PageSearchDelegate> searchDelegate;
 

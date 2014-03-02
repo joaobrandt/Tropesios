@@ -176,6 +176,7 @@
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self pageLoaded:page];
+        [self saveHistory]; 
     }];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -266,7 +267,7 @@
     // **************************************
     // Loading remote content;
     // **************************************
-    query = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    query = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL *url = [NSURL URLWithString:[TV_TROPES_URL_SEARCH stringByAppendingString:query]];
     
@@ -276,32 +277,33 @@
             return;
         }
         
-        TFHpple *hpple = [TFHpple hppleWithHTMLData:data encoding:@"ISO-8859-1"];
+        NSDictionary *dictionaryJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         
-        NSArray *elements = [hpple searchWithXPathQuery:@"//a[@class='l']"];
-        NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:elements.count];
+        NSArray *items = [dictionaryJSON objectForKey:@"items"];
+        NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:items.count];
         
-        for (TFHppleElement *element in elements) {
-            
+        for (NSDictionary *item in items) {
             SearchEntry *entry = [SearchEntry new];
             
-            entry.pageId = [element.attributes objectForKey:@"href"];
+            entry.pageId = [item objectForKey:@"link"];
             if ([entry.pageId hasPrefix:TV_TROPES_URL]) {
                 entry.pageId = [entry.pageId substringFromIndex:[TV_TROPES_URL length]];
             }
             
-            entry.text = @"";
-            for (TFHppleElement *child in element.children) {
-                entry.text = [entry.text stringByAppendingString: (child.text != nil ? child.text : child.content) ];
-            }
-            
+            entry.text = [item objectForKey:@"title"];
             if ([entry.text hasSuffix:TV_TROPES_TITLE_SUFFIX]) {
                 entry.text = [entry.text substringToIndex:entry.text.length - TV_TROPES_TITLE_SUFFIX.length];
-                [entries addObject:entry];
             }
+            
+            entry.snippet = [[item objectForKey:@"snippet"] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            
+            [entries addObject:entry];
         }
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+        self.lastSearchTerm = query;
+        self.lastSearchResults = entries;
         [self.searchDelegate resultsFound:entries];
     }];
     
