@@ -11,6 +11,8 @@
 
 @interface ContentsViewController () <NSFetchedResultsControllerDelegate>
 
+- (void)loadContents;
+
 @end
 
 @implementation ContentsViewController
@@ -19,6 +21,27 @@
 {
     [super viewDidLoad];
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
+    [self loadContents];
+}
+
+- (void)loadContents
+{
+    [NSFetchedResultsController deleteCacheWithName:@"TopicsCache"];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Topic class])];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"page == %@", self.pageManager.currentPage];
+    fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"topicId" ascending:YES]];
+    fetchRequest.fetchBatchSize = 20;
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"TopicsCache"];
+    self.fetchedResultsController.delegate = self;
+    
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        exit(-1);
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Page Manager Observer
@@ -26,22 +49,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([object isEqual:self.pageManager] && [keyPath isEqualToString:@"currentPage"]) {
-        [NSFetchedResultsController deleteCacheWithName:@"TopicsCache"];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([Topic class])];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"page == %@", self.pageManager.currentPage];
-        fetchRequest.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"topicId" ascending:YES]];
-        fetchRequest.fetchBatchSize = 20;
-        
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"TopicsCache"];
-        self.fetchedResultsController.delegate = self;
-        
-        NSError *error;
-        if (![self.fetchedResultsController performFetch:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-            exit(-1);
-        }
-        [self.tableView reloadData];
+        [self loadContents];
     }
 }
 
