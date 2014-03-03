@@ -20,34 +20,52 @@ li {
     margin: 4px 0;
 }
 
-.quoteright {
+.quoteright,
+.quoteleft {
     background-color: #FFFFFF;
-    clear: right;
-    float: right;
     margin: 5px 5px 0 5px;
     padding: 10px 10px 5px 10px;
     position: relative;
-    width: 150px;
+    width: 400px !important;
+    max-width: 400px !important;
     z-index: 4;
     border: 1px solid #DAD9D6;
     border-bottom: none;
     -webkit-box-shadow: 2px 2px 2px #888888;
 }
 
+.quoteright img, 
+.quoteleft img {
+    width: 400px !important;
+    max-width: 400px !important;
+}
+
+.acaption,
 .acaptionright {
     background-color: #FFFFFF;
-    clear: right;
-    float: right;
     margin: 0 5px 5px 5px;
     padding: 5px 10px 10px 10px;
     position: relative;
     text-align: center;
-    width: 150px;
+    width: 400px !important;
+    max-width: 400px !important;
     z-index: 4;
     border: 1px solid #DAD9D6;
     border-top: none;
     -webkit-box-shadow: 2px 2px 2px #888888;
     font-size: 75%;
+}
+
+.quoteright,
+.acaptionright {
+    clear: right;
+    float: right;
+}
+
+.quoteleft,
+.acaption {
+    float:left;
+    clear:left;
 }
 
 .spoiler {
