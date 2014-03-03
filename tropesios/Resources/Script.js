@@ -10,9 +10,13 @@ $(document).ready(function() {
 		$(this).addClass("spoiler-visible");
 	});
 
-	$(".twikilink").each(function() {
-		var ref = $(this).attr("href").replace("http://tvtropes.org/pmwiki/pmwiki.php/", "tvtropeswiki:");
-		$(this).attr("href", ref);
+	$("a").each(function() {
+		var href = $(this).attr("href");
+		
+		if (href.indexOf("http://tvtropes.org/pmwiki/pmwiki.php/") == 0) {
+			href = href.replace("http://tvtropes.org/pmwiki/pmwiki.php/", "tvtropeswiki:");
+			$(this).attr("href", href);
+		}
 	});
 });
 

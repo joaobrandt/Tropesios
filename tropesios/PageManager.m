@@ -196,7 +196,6 @@
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self pageLoaded:page];
-        [self saveHistory]; 
     }];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -240,6 +239,7 @@
     }
     
     self.currentPage = page;
+    [self saveHistory];
 }
 
 - (void)loadHistory
