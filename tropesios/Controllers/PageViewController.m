@@ -194,8 +194,13 @@
 {
     barButtonItem.image = [UIImage imageNamed:@"Master"];
     
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.toolbar.items.count + 1];
+    UIBarButtonItem *fixedSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    fixedSpaceItem.style = UIBarButtonItemStylePlain;
+    fixedSpaceItem.width = 10;
+    
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:self.toolbar.items.count + 2];
     [array addObject:barButtonItem];
+    [array addObject:fixedSpaceItem];
     [array addObjectsFromArray:self.toolbar.items];
     
     [self.toolbar setItems:array];
@@ -206,6 +211,7 @@
 {
     NSMutableArray *array = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
     [array removeObject:barButtonItem];
+    [array removeObjectAtIndex:0]; // Remove fixedSpace
     
     [self.toolbar setItems:array];
     self.masterPopoverController = nil;
