@@ -132,7 +132,7 @@
         // **************************************
         TFHpple *hpple = [TFHpple hppleWithHTMLData:data encoding:@"ISO-8859-1"];
         
-        TFHppleElement *titleElement = [hpple peekAtSearchWithXPathQuery:@"//div[@class='pagetitle']/span"];
+        TFHppleElement *titleElement = [hpple peekAtSearchWithXPathQuery:@"//div[@class='pagetitle']"];
         TFHppleElement *contentsElement = [hpple peekAtSearchWithXPathQuery:@"//div[@id='wikitext']"];
         NSArray *folders = [hpple searchWithXPathQuery:@"//div[@class='folderlabel']"];
         
@@ -145,8 +145,28 @@
         // **************************************
         // Storing entities
         // **************************************
-        page.title = titleElement.text;
+        page.title = @"";
         
+        NSMutableString *title = [NSMutableString new];
+        NSString *part = nil;
+
+        for (TFHppleElement *element in titleElement.children) {
+            
+            if ([element.tagName isEqualToString:@"span"]) {
+                part = element.text;
+            } else {
+                part = [element.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            }
+            
+            if (part != nil) {
+                if (title.length > 0) {
+                    [title appendString:@" "];
+                }
+                [title appendString:part];
+            }
+        }
+        page.title = [title description];
+     
         Content *content = [Content newIn:self.managedObjectContext];
         content.html = contentsElement.raw;
         content.page = page;
