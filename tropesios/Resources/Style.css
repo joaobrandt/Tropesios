@@ -67,3 +67,18 @@ li {
 .spoiler-visible a {
     visibility: visible;
 }
+
+/* ********************************* */
+/* Empty page
+/* ********************************* */
+body.empty-page {
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: justify;
+}
+
+img.tv-tropes-logo {
+    display: block;
+    height: 300px;
+    margin: 40px auto;
+}

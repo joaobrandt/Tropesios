@@ -31,6 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"EmptyPage" ofType:@"html"];
+    
+    NSString *html = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    [self.webView loadHTMLString:html baseURL:baseURL];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
@@ -124,25 +130,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([object isEqual:self.pageManager] && [keyPath isEqualToString:@"currentPage"]) {
-        NSString *cssFile = [[NSBundle mainBundle] pathForResource:@"Style" ofType:@"css"];
-        cssFile = [NSURL fileURLWithPath:cssFile];
         
         NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
-        
-        NSString *html = @"<!DOCTYPE html>"
-        "<html>"
-        "  <head>"
-        "    <link rel='stylesheet' type='text/css' href='Style.css'/>"
-        "    <script type='text/javascript' src='Zepto.min.js'></script>"
-        "    <script type='text/javascript' src='Script.js'></script>"
-        "  </head>"
-        "  <body>"
-        "    <h1>%@</h1>"
-        "    %@"
-        "  </body>"
-        "  <script type='text/javascript'>Zepto(function($){%@})</script>"
-        "</html>";
-        
+        NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"DefaultPage" ofType:@"html"];
+
+        NSString *html = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+
         html = [NSString stringWithFormat:html, self.pageManager.currentPage.title, self.pageManager.currentPage.content.html, [self createPagePreferencesCommand:[NSUserDefaults standardUserDefaults]]];
         
         [self.webView loadHTMLString:html baseURL:baseURL];

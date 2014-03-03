@@ -236,16 +236,6 @@
             [self.backHistory removeLastObject];
             [self goToPageWithId:lastVisited];
         }
-        else {
-            // TODO
-            [self goToPageWithId:@"Main/AbortedDeclarationOfLove"];
-
-        }
-    }
-    
-    else {
-        // TODO
-        [self goToPageWithId:@"Main/AbortedDeclarationOfLove"];
     }
 }
 

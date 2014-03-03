@@ -11,6 +11,9 @@
 		6C217813189E91F800300B09 /* Content.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C217812189E91F800300B09 /* Content.m */; };
 		6C217816189E91F900300B09 /* Page.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C217815189E91F900300B09 /* Page.m */; };
 		6C21781C189E950E00300B09 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C21781B189E950E00300B09 /* Topic.m */; };
+		6C3BCD8518C4BB880084E6B1 /* DefaultPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8418C4BB880084E6B1 /* DefaultPage.html */; };
+		6C3BCD8718C4BC220084E6B1 /* EmptyPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8618C4BC220084E6B1 /* EmptyPage.html */; };
+		6C3BCD8918C4C6780084E6B1 /* TVTropes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8818C4C6780084E6B1 /* TVTropes.png */; };
 		6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C49E752188DDBC5000DEE7C /* Tropesios.xcdatamodeld */; };
 		6C5EB39D18A045F800C9D181 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39C18A045F800C9D181 /* Constants.m */; };
 		6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */; };
@@ -51,6 +54,9 @@
 		6C217815189E91F900300B09 /* Page.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page.m; sourceTree = "<group>"; };
 		6C21781A189E950E00300B09 /* Topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
 		6C21781B189E950E00300B09 /* Topic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		6C3BCD8418C4BB880084E6B1 /* DefaultPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DefaultPage.html; sourceTree = "<group>"; };
+		6C3BCD8618C4BC220084E6B1 /* EmptyPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmptyPage.html; sourceTree = "<group>"; };
+		6C3BCD8818C4C6780084E6B1 /* TVTropes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVTropes.png; sourceTree = "<group>"; };
 		6C49E753188DDBC5000DEE7C /* Tropesios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tropesios.xcdatamodel; sourceTree = "<group>"; };
 		6C5EB39B18A045F800C9D181 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6C5EB39C18A045F800C9D181 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -170,6 +176,9 @@
 				6CC5491F187EDD06006B7C28 /* Zepto.min.js */,
 				6CC548F0187ED151006B7C28 /* Style.css */,
 				6CC5491D187EDCDD006B7C28 /* Script.js */,
+				6C3BCD8418C4BB880084E6B1 /* DefaultPage.html */,
+				6C3BCD8618C4BC220084E6B1 /* EmptyPage.html */,
+				6C3BCD8818C4C6780084E6B1 /* TVTropes.png */,
 			);
 			name = Resources;
 			path = Tropesios/Resources;
@@ -337,8 +346,11 @@
 			files = (
 				6CC54921187EE11B006B7C28 /* Zepto.min.js in Resources */,
 				6CC54922187EE11B006B7C28 /* Script.js in Resources */,
+				6C3BCD8718C4BC220084E6B1 /* EmptyPage.html in Resources */,
+				6C3BCD8518C4BB880084E6B1 /* DefaultPage.html in Resources */,
 				6CC5491C187ED64E006B7C28 /* Main.storyboard in Resources */,
 				6CCB824C187C3EB500BE2617 /* Images.xcassets in Resources */,
+				6C3BCD8918C4C6780084E6B1 /* TVTropes.png in Resources */,
 				6CC548F1187ED151006B7C28 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
