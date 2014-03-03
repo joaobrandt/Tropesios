@@ -397,10 +397,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Back" width="32" height="32"/>
+        <image name="Back" width="25" height="25"/>
         <image name="Contents" width="25" height="25"/>
         <image name="Decrease Font" width="22" height="22"/>
-        <image name="Forward" width="32" height="32"/>
+        <image name="Forward" width="25" height="25"/>
         <image name="Increase Font" width="22" height="22"/>
         <image name="Text Settings" width="32" height="32"/>
     </resources>

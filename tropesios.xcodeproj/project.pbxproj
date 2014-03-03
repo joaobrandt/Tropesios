@@ -16,6 +16,7 @@
 		6C3BCD8918C4C6780084E6B1 /* TVTropes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8818C4C6780084E6B1 /* TVTropes.png */; };
 		6C3BCD8C18C50D390084E6B1 /* TFHppleElement+Visitors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8B18C50D390084E6B1 /* TFHppleElement+Visitors.m */; };
 		6C3BCD8F18C512980084E6B1 /* ContentTextVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8E18C512980084E6B1 /* ContentTextVisitor.m */; };
+		6C3BCD9418C53D010084E6B1 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BCD9318C53D010084E6B1 /* Reachability.m */; };
 		6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C49E752188DDBC5000DEE7C /* Tropesios.xcdatamodeld */; };
 		6C5EB39D18A045F800C9D181 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39C18A045F800C9D181 /* Constants.m */; };
 		6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */; };
@@ -63,6 +64,8 @@
 		6C3BCD8B18C50D390084E6B1 /* TFHppleElement+Visitors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFHppleElement+Visitors.m"; sourceTree = "<group>"; };
 		6C3BCD8D18C512980084E6B1 /* ContentTextVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTextVisitor.h; sourceTree = "<group>"; };
 		6C3BCD8E18C512980084E6B1 /* ContentTextVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTextVisitor.m; sourceTree = "<group>"; };
+		6C3BCD9218C53D010084E6B1 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6C3BCD9318C53D010084E6B1 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6C49E753188DDBC5000DEE7C /* Tropesios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tropesios.xcdatamodel; sourceTree = "<group>"; };
 		6C5EB39B18A045F800C9D181 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6C5EB39C18A045F800C9D181 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -141,6 +144,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		6C3BCD9118C53CB30084E6B1 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6C3BCD9218C53D010084E6B1 /* Reachability.h */,
+				6C3BCD9318C53D010084E6B1 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		6CB0B9DC188302890071D1CA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +214,7 @@
 		6CC548F2187ED229006B7C28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C3BCD9118C53CB30084E6B1 /* Reachability */,
 				6CE9E95118943607005DAD00 /* Extensions */,
 				6CC548F3187ED229006B7C28 /* Hpple */,
 				6C3BCD9018C5129E0084E6B1 /* Utils */,
@@ -380,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C3BCD9418C53D010084E6B1 /* Reachability.m in Sources */,
 				6CBE507518B1502D008E0BEE /* ToReadViewController.m in Sources */,
 				6CCB824A187C3EB500BE2617 /* PageViewController.m in Sources */,
 				6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */,

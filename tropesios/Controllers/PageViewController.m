@@ -40,6 +40,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    self.pageManager.delegate = self;
     [self.pageManager addObserver:self forKeyPath:@"currentPage" options:0 context:nil];
     [self.pageManager loadHistory];
 }
@@ -210,6 +211,11 @@
     self.masterPopoverController = nil;
 }
 
-
+#pragma mark - PageManagerDelegate
+- (void)connectionUnavailable
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not connected" message:@"Tropesios requires an internet connection to reach this information." delegate:self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+    [alertView show];
+}
 
 @end

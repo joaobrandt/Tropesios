@@ -8,7 +8,7 @@
 
 #import "PageManager.h"
 
-@interface PageViewController : UIViewController <UIWebViewDelegate, UISplitViewControllerDelegate, UITextFieldDelegate>
+@interface PageViewController : UIViewController <UIWebViewDelegate, UISplitViewControllerDelegate, UITextFieldDelegate, PageManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;

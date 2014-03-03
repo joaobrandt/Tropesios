@@ -8,6 +8,12 @@
 
 #import "Page.h"
 
+@protocol PageManagerDelegate <NSObject>
+
+- (void)connectionUnavailable;
+
+@end
+
 @protocol PageSearchDelegate <NSObject>
 
 - (void)resultsFound:(NSArray*)results;
@@ -23,6 +29,7 @@
 @property (strong, nonatomic) NSString *lastSearchTerm;
 @property (strong, nonatomic) NSArray *lastSearchResults;
 
+@property (strong, nonatomic) id<PageManagerDelegate> delegate;
 @property (strong, nonatomic) id<PageSearchDelegate> searchDelegate;
 
 - (void)goToPageWithId:(NSString*)pageId;

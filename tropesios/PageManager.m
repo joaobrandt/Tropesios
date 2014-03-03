@@ -15,6 +15,7 @@
 #import "Topic.h"
 #import "SearchEntry.h"
 
+#import "Reachability.h"
 #import "TFHpple.h"
 #import "TFHppleElement.h"
 #import "NSManagedObject+Extensions.h"
@@ -118,7 +119,15 @@
     }
     
     // **************************************
-    // Loading remote content;
+    // Check connection
+    // **************************************
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
+        [self.delegate connectionUnavailable];
+        return;
+    }
+    
+    // **************************************
+    // Loading remote content
     // **************************************
     NSURL *url = [NSURL URLWithString:[TV_TROPES_URL stringByAppendingString:page.pageId]];
     
@@ -258,6 +267,14 @@
 
 - (void)search:(NSString*)query;
 {
+    // **************************************
+    // Check connection
+    // **************************************
+    if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable) {
+        [self.delegate connectionUnavailable];
+        return;
+    }
+    
     // **************************************
     // Loading remote content;
     // **************************************
