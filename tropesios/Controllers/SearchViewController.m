@@ -20,8 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.searchResults = [NSArray new];
     [self addObserver:self forKeyPath:@"pageManager" options:0 context:nil];
     [self addObserver:self forKeyPath:@"searchTextField" options:0 context:nil];
 }
@@ -33,6 +31,11 @@
         
         self.pageManager.searchDelegate = self;
         self.searchResults = self.pageManager.lastSearchResults;
+        
+        if (self.searchResults == nil) {
+            self.searchResults = @[];
+        }
+        
         [self.tableView reloadData];
     }
     
@@ -61,6 +64,12 @@
     [self.tableView reloadData];
 }
 
+- (void)resultsFound;
+{
+    self.searchResults = nil;
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -70,18 +79,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.searchResults.count;
+    return self.searchResults != nil ? self.searchResults.count : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"searchCell";
     
-    SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
+    UITableViewCell *cell;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = entry.text;
-    cell.detailTextLabel.text = entry.snippet;
+    if (self.searchResults != nil) {
+        SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
+    
+        cell = [tableView dequeueReusableCellWithIdentifier:@"searchCell" forIndexPath:indexPath];
+        cell.textLabel.text = entry.text;
+        cell.detailTextLabel.text = entry.snippet;
+        
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"emptyResultsCell" forIndexPath:indexPath];
+    }
     
     return cell;
 }
@@ -95,11 +110,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
-    [self.pageManager goToPageWithId:entry.pageId];
+    if (self.searchResults == nil) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    } else {
+        SearchEntry *entry = [self.searchResults objectAtIndex:indexPath.row];
+        [self.pageManager goToPageWithId:entry.pageId];
     
-    [self.searchTextField resignFirstResponder];
-    [self.popover dismissPopoverAnimated:YES];
+        [self.searchTextField resignFirstResponder];
+        [self.popover dismissPopoverAnimated:YES];
+    }
+    
 }
 
 @end

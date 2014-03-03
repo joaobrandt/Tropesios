@@ -17,6 +17,7 @@
 @protocol PageSearchDelegate <NSObject>
 
 - (void)resultsFound:(NSArray*)results;
+- (void)resultsFound;
 
 @end
 

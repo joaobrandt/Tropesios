@@ -291,6 +291,18 @@
         NSDictionary *dictionaryJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         
         NSArray *items = [dictionaryJSON objectForKey:@"items"];
+        
+        // **************************************
+        // Checking results
+        // **************************************
+        if (items == nil || items.count == 0) {
+            [self.searchDelegate resultsFound];
+            return;
+        }
+        
+        // **************************************
+        // Converting results
+        // **************************************
         NSMutableArray *entries = [[NSMutableArray alloc] initWithCapacity:items.count];
         
         for (NSDictionary *item in items) {
@@ -311,6 +323,9 @@
             [entries addObject:entry];
         }
         
+        // **************************************
+        // Notify delegate
+        // **************************************
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
         self.lastSearchTerm = query;

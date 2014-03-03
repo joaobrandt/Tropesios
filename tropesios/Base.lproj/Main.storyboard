@@ -25,6 +25,7 @@
                                             <action selector="goBack:" destination="JEX-9P-axG" id="x2x-je-xmJ"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="ea1-7O-JLl"/>
                                     <barButtonItem enabled="NO" image="Forward" id="ajc-2Y-H2y">
                                         <connections>
                                             <action selector="goForward:" destination="JEX-9P-axG" id="LeY-1G-6zd"/>
@@ -98,16 +99,16 @@
             <objects>
                 <tableViewController id="q6y-mg-VbV" customClass="SearchViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="06q-ER-dF4">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="340"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" textLabel="aH6-4g-wkH" detailTextLabel="nKk-PU-uxX" style="IBUITableViewCellStyleSubtitle" id="bkg-wU-whT">
-                                <rect key="frame" x="0.0" y="22" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="300" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bkg-wU-whT" id="QHs-RY-hdX">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aH6-4g-wkH">
@@ -121,6 +122,23 @@
                                             <rect key="frame" x="15" y="25" width="43" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyResultsCell" textLabel="BPf-Vi-MHb" style="IBUITableViewCellStyleDefault" id="E5r-7z-Ejs">
+                                <rect key="frame" x="0.0" y="66" width="300" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E5r-7z-Ejs" id="csJ-3V-tff">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="No results found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BPf-Vi-MHb">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
