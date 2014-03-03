@@ -90,6 +90,11 @@ static NSString * const TFHppleTextNodeName            = @"text";
   return [node objectForKey:TFHppleNodeNameKey];
 }
 
+- (NSString *)cssClass
+{
+    return [self.attributes objectForKey:@"class"];
+}
+
 - (NSArray *) children
 {
   NSMutableArray *children = [NSMutableArray array];
@@ -210,7 +215,7 @@ static NSString * const TFHppleTextNodeName            = @"text";
 }
 
 - (NSString *) text
-{
+{   
     return self.firstTextChild.content;
 }
 

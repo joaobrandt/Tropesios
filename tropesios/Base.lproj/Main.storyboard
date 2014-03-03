@@ -42,7 +42,7 @@
                                     <barButtonItem image="Share" id="Tkb-Ht-ada"/>
                                     <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="CKH-9Z-Aq5"/>
                                     <barButtonItem style="plain" id="doU-ze-bCb">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search TV Tropes" minimumFontSize="17" clearButtonMode="whileEditing" id="PVZ-Fy-1nW">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search TV Tropes" minimumFontSize="17" clearButtonMode="unlessEditing" id="PVZ-Fy-1nW">
                                             <rect key="frame" x="487" y="7" width="200" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

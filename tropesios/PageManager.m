@@ -19,6 +19,7 @@
 #import "TFHppleElement.h"
 #import "NSManagedObject+Extensions.h"
 #import "NSDate+Extensions.h"
+#import "ContentTextVisitor.h"
 
 @interface PageManager ()
 
@@ -145,28 +146,11 @@
         // **************************************
         // Storing entities
         // **************************************
-        page.title = @"";
+        page.title = [ContentTextVisitor contentTextOf:titleElement filter:^BOOL(TFHppleElement *element){
+            // Remove banner_audience: Main/GameBreaker.
+            return element.isTextNode || [element.tagName isEqualToString:@"span"] || [element.cssClass isEqualToString:@"pagetitle"];
+        }];
         
-        NSMutableString *title = [NSMutableString new];
-        NSString *part = nil;
-
-        for (TFHppleElement *element in titleElement.children) {
-            
-            if ([element.tagName isEqualToString:@"span"]) {
-                part = element.text;
-            } else {
-                part = [element.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            }
-            
-            if (part != nil) {
-                if (title.length > 0) {
-                    [title appendString:@" "];
-                }
-                [title appendString:part];
-            }
-        }
-        page.title = [title description];
-     
         Content *content = [Content newIn:self.managedObjectContext];
         content.html = contentsElement.raw;
         content.page = page;
@@ -188,7 +172,7 @@
             
             topic = [Topic newIn:self.managedObjectContext];
             topic.topicId = [NSNumber numberWithInt:topicId];
-            topic.title = [element.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            topic.title = [ContentTextVisitor contentTextOf:element];
             topic.page = page;
             
             topicId++;
@@ -331,3 +315,5 @@
 }
 
 @end
+
+                

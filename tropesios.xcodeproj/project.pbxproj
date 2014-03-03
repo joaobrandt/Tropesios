@@ -14,6 +14,8 @@
 		6C3BCD8518C4BB880084E6B1 /* DefaultPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8418C4BB880084E6B1 /* DefaultPage.html */; };
 		6C3BCD8718C4BC220084E6B1 /* EmptyPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8618C4BC220084E6B1 /* EmptyPage.html */; };
 		6C3BCD8918C4C6780084E6B1 /* TVTropes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8818C4C6780084E6B1 /* TVTropes.png */; };
+		6C3BCD8C18C50D390084E6B1 /* TFHppleElement+Visitors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8B18C50D390084E6B1 /* TFHppleElement+Visitors.m */; };
+		6C3BCD8F18C512980084E6B1 /* ContentTextVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3BCD8E18C512980084E6B1 /* ContentTextVisitor.m */; };
 		6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C49E752188DDBC5000DEE7C /* Tropesios.xcdatamodeld */; };
 		6C5EB39D18A045F800C9D181 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39C18A045F800C9D181 /* Constants.m */; };
 		6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB39F18A048D600C9D181 /* PagePreferencesViewController.m */; };
@@ -57,6 +59,10 @@
 		6C3BCD8418C4BB880084E6B1 /* DefaultPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DefaultPage.html; sourceTree = "<group>"; };
 		6C3BCD8618C4BC220084E6B1 /* EmptyPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmptyPage.html; sourceTree = "<group>"; };
 		6C3BCD8818C4C6780084E6B1 /* TVTropes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TVTropes.png; sourceTree = "<group>"; };
+		6C3BCD8A18C50D390084E6B1 /* TFHppleElement+Visitors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TFHppleElement+Visitors.h"; sourceTree = "<group>"; };
+		6C3BCD8B18C50D390084E6B1 /* TFHppleElement+Visitors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TFHppleElement+Visitors.m"; sourceTree = "<group>"; };
+		6C3BCD8D18C512980084E6B1 /* ContentTextVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTextVisitor.h; sourceTree = "<group>"; };
+		6C3BCD8E18C512980084E6B1 /* ContentTextVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTextVisitor.m; sourceTree = "<group>"; };
 		6C49E753188DDBC5000DEE7C /* Tropesios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tropesios.xcdatamodel; sourceTree = "<group>"; };
 		6C5EB39B18A045F800C9D181 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		6C5EB39C18A045F800C9D181 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -126,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C3BCD9018C5129E0084E6B1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6C3BCD8D18C512980084E6B1 /* ContentTextVisitor.h */,
+				6C3BCD8E18C512980084E6B1 /* ContentTextVisitor.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6CB0B9DC188302890071D1CA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +204,7 @@
 			children = (
 				6CE9E95118943607005DAD00 /* Extensions */,
 				6CC548F3187ED229006B7C28 /* Hpple */,
+				6C3BCD9018C5129E0084E6B1 /* Utils */,
 			);
 			name = Frameworks;
 			path = Tropesios/Frameworks;
@@ -283,6 +299,8 @@
 				6C7F25C91890898A004E93C3 /* NSManagedObject+Extensions.m */,
 				6C7F25CE1890A6E4004E93C3 /* NSDate+Extensions.h */,
 				6C7F25CF1890A6E4004E93C3 /* NSDate+Extensions.m */,
+				6C3BCD8A18C50D390084E6B1 /* TFHppleElement+Visitors.h */,
+				6C3BCD8B18C50D390084E6B1 /* TFHppleElement+Visitors.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -366,6 +384,7 @@
 				6CCB824A187C3EB500BE2617 /* PageViewController.m in Sources */,
 				6CCB823E187C3EB500BE2617 /* TropesiosAppDelegate.m in Sources */,
 				6CACCD8A1895812A00C2CCD1 /* ContentsViewController.m in Sources */,
+				6C3BCD8F18C512980084E6B1 /* ContentTextVisitor.m in Sources */,
 				6C49E754188DDBC5000DEE7C /* Tropesios.xcdatamodeld in Sources */,
 				6CAB586518A994ED00FEA1C0 /* SearchEntry.m in Sources */,
 				6CB0B9F718830B7D0071D1CA /* PageManager.m in Sources */,
@@ -385,6 +404,7 @@
 				6C5EB3A018A048D600C9D181 /* PagePreferencesViewController.m in Sources */,
 				6CC548FC187ED229006B7C28 /* TFHppleElement.m in Sources */,
 				6C5EB39D18A045F800C9D181 /* Constants.m in Sources */,
+				6C3BCD8C18C50D390084E6B1 /* TFHppleElement+Visitors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
