@@ -110,7 +110,7 @@
 		6CCB8240187C3EB500BE2617 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CCB8248187C3EB500BE2617 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
 		6CCB8249187C3EB500BE2617 /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
-		6CCB824B187C3EB500BE2617 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
+		6CCB824B187C3EB500BE2617 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6CCB8252187C3EB500BE2617 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6CE9E95218943BE7005DAD00 /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		6CE9E95318943BE7005DAD00 /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
