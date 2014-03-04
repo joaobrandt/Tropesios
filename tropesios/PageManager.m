@@ -133,7 +133,8 @@
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
-            // TODO Handle
+            NSLog(@"PageManager - Error on download page: %@, %@", error, error.userInfo);
+            [self.delegate error];
             return;
         }
         
@@ -284,11 +285,17 @@
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
-            // TODO Handle
+            NSLog(@"PageManager - Error on search: %@, %@", error, error.userInfo);
+            [self.delegate error];
             return;
         }
         
         NSDictionary *dictionaryJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        if (error != nil) {
+            NSLog(@"PageManager - Error on parse search: %@, %@", error, error.userInfo);
+            [self.delegate error];
+            return;
+        }
         
         NSArray *items = [dictionaryJSON objectForKey:@"items"];
         

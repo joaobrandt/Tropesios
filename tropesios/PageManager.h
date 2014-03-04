@@ -11,6 +11,7 @@
 @protocol PageManagerDelegate <NSObject>
 
 - (void)connectionUnavailable;
+- (void)error;
 
 @end
 

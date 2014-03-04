@@ -224,4 +224,10 @@
     [alertView show];
 }
 
+- (void)error
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Tropesios found a error when accessing this information." delegate:self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+    [alertView show];
+}
+
 @end

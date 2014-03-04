@@ -37,8 +37,7 @@
     
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
-        exit(-1);
+        NSLog(@"HistoryViewController - Error on performFetch: %@, %@", error, error.userInfo);
     }
     
     [self done:nil];

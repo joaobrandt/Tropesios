@@ -41,7 +41,6 @@
 
 + (id)in:(NSManagedObjectContext*)managedObjectContext getOneWithId:(NSManagedObjectID*)objectId;
 {
-    // TODO Handle error
     return [managedObjectContext existingObjectWithID:objectId error:nil];
 }
 
@@ -56,7 +55,6 @@
     
     va_end(args);
     
-    // TODO Handle error
     NSArray* objects = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     return objects.count > 0 ? objects[0] : nil;
 }
@@ -71,7 +69,6 @@
     
     va_end(args);
     
-    // TODO Handle error
     NSArray* objects = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
     for (NSManagedObject *object in objects) {
         [managedObjectContext deleteObject:object];
