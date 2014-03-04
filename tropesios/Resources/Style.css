@@ -26,7 +26,7 @@ li {
     margin: 5px 5px 0 5px;
     padding: 10px 10px 5px 10px;
     position: relative;
-    width: 400px !important;
+    width: auto !important;
     max-width: 400px !important;
     z-index: 4;
     border: 1px solid #DAD9D6;
@@ -36,8 +36,7 @@ li {
 
 .quoteright img, 
 .quoteleft img {
-    width: 400px !important;
-    max-width: 400px !important;
+    max-width: 380px !important;
 }
 
 .acaption,
@@ -47,7 +46,6 @@ li {
     padding: 5px 10px 10px 10px;
     position: relative;
     text-align: center;
-    width: 400px !important;
     max-width: 400px !important;
     z-index: 4;
     border: 1px solid #DAD9D6;
