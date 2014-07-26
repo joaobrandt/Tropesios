@@ -3,10 +3,18 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+=======
+header {
+    width: 1120px;
+    margin: 10px auto 40px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #EEEEEE;
+>>>>>>> FETCH_HEAD
 }
 
 body {
@@ -26,7 +34,10 @@ body {
     font-weight: 400;
     line-height: 1;
     color: #777777;
+<<<<<<< HEAD
     margin: 5px auto;
+=======
+>>>>>>> FETCH_HEAD
 }
 
 .screenshot {
@@ -108,6 +119,7 @@ footer a {
 
 footer a:hover
 {
+<<<<<<< HEAD
     color: #000000;
 }
 
@@ -116,4 +128,28 @@ footer .copyright {
     color: #CCCCCC;
     line-height: 29px;
     margin-right: 10px;
+=======
+    margin-bottom: -80px;
+    position:relative;
+}
+
+.donate-bar {
+    margin: 80px auto 0;
+    padding: 9px 14px;
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    border-radius: 4px;
+    width: 500px;
+    color: #484848;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.donate-bar form {
+    margin-left: 20px;
+    display: inline-block; 
+    vertical-align: middle;  
+>>>>>>> FETCH_HEAD
 }
