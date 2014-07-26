@@ -1,67 +1,119 @@
 * { 
-    box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-header {
-    width: 1120px;
-    margin: 40px auto;
-    padding-bottom: 9px;
-    border-bottom: 1px solid #EEEEEE;
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
-.content {
-    width: 1120px;
-    margin: 0px auto;
+body {
+    margin: 0;
 }
 
-.page-title {
-    display: inline-block;
-    font-size: 63px;
+.logo {
+    text-align: center;
+    margin: 10px 10px 10px 10px;
+}
+
+.logo img {
+    max-width: 300px;
+}
+
+.logo h3 {
+    font-weight: 400;
+    line-height: 1;
+    color: #777777;
+    margin: 5px auto;
+}
+
+.screenshot {
+    text-align: center;
+    margin: 10px 0 50px;
+    background: #FFFFFF;
+    border-bottom: solid 1px #D4D4D4;
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #FFFFFF 78%, #F3F3F3 95%, #F1F1F1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFFFFF), color-stop(78%, #FFFFFF), color-stop(95%, #F3F3F3), color-stop(100%, #F1F1F1));
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #FFFFFF 78%, #F3F3F3 95%, #F1F1F1 100%);
+    background: -o-linear-gradient(top, #FFFFFF 0%, #FFFFFF 78%, #F3F3F3 95%, #F1F1F1 100%);
+    background: -ms-linear-gradient(top, #FFFFFF 0%, #FFFFFF 78%, #F3F3F3 95%, #F1F1F1 100%);
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 78%, #F3F3F3 95%, #F1F1F1 100%);
+}
+
+.screenshot img {
+    position: relative;
+    margin-bottom: -40px;
+}
+
+.appstore {
+    text-align: center; 
     margin: 10px 0;
 }
 
-.page-title small {
-    font-size: 50%;
-    font-weight: 400;
-    line-height: 1;
-    color: #777;
+.appstore a {
+    text-decoration: none;
 }
 
-.app-store-badge,
-.app-store-badge img {
-    float: right;
-    margin-top: 3px;
-    text-decoration: none;
+.appstore span {
+    display: block; 
     font-weight: bold;
     color: #484848;
 }
 
-.app-store-badge span {
-    display: block;
-    text-align: center;
-    clear: both;
-    position: relative;
-    top: 7px;
-}
-
-.app-store-badge span b {
+.appstore strong {
     color: #1B91C8;
 }
 
-.main {
+.donate {
+    color: #484848;
+    background-color: #EFEFEF;
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
     text-align: center;
-    background: rgb(255, 255, 255);
-    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 78%, rgba(243, 243, 243, 1) 95%, rgba(241, 241, 241, 1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(78%, rgba(255, 255, 255, 1)), color-stop(95%, rgba(243, 243, 243, 1)), color-stop(100%, rgba(241, 241, 241, 1)));
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 78%, rgba(243, 243, 243, 1) 95%, rgba(241, 241, 241, 1) 100%);
-    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 78%, rgba(243, 243, 243, 1) 95%, rgba(241, 241, 241, 1) 100%);
-    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 78%, rgba(243, 243, 243, 1) 95%, rgba(241, 241, 241, 1) 100%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 78%, rgba(243, 243, 243, 1) 95%, rgba(241, 241, 241, 1) 100%);
-    border-bottom: solid 1px #d4d4d4;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 250px;
+    padding: 10px;
 }
 
-.main img
+.donate h3 {
+    margin: 0;
+}
+
+.donate form {
+    margin-top: 10px;
+}
+
+.donate select {
+    display: block;
+}
+
+footer {
+    margin-top: 30px;
+    border-top: solid 1px #D4D4D4;
+    padding: 40px 0;
+    font-size: 16px;
+}
+
+footer a {
+    color: #484848;
+    font-weight: bold;
+    text-decoration: none;
+    float: left;
+    margin-left: 10px;
+    line-height: 29px;
+}
+
+footer a:hover
 {
-    margin-bottom: -80px;
-    position:relative;
+    color: #000000;
+}
+
+footer .copyright {
+    float: right;
+    color: #CCCCCC;
+    line-height: 29px;
+    margin-right: 10px;
 }
